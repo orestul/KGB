@@ -98,6 +98,12 @@
                 <h2 class="intro-text text-center">
                     <strong>Top Members of the week</strong>
                 </h2>
+                @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <!-- Error text <p class="text-danger">@</p>-->
+                    <input type="file" name="file" />
+                    <input type="submit" name="Submit" id="Submit" value="Upload" />
+                }
                 <hr>
                 <div class="col-md-6">
                     <div class="well well-lg">
