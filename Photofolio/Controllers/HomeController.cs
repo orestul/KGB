@@ -13,18 +13,26 @@ namespace Photofolio.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Gallery()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
+        public ActionResult UploadArt()
+        {
             return View();
         }
+
+        public ActionResult UploadPhoto()
+        {
+            return View();
+        }
+
+        public ActionResult MyAccount()
+        {
+            return View();
+        }
+
     }
 }

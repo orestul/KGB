@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -160,20 +162,44 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Photofolio.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Photofolio.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Photofolio.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Photofolio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Photofolio.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Photofolio.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="User.cs">
+      <DependentUpon>Photofolio.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Photofolio.mdf" />
+    <Content Include="App_Data\Photofolio_log.ldf">
+      <DependentUpon>Photofolio.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\Styles\bootstrap.css" />
     <Content Include="Content\Styles\bootstrap.min.css" />
     <Content Include="Content\Styles\photofolio.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\bg.jpg" />
     <Content Include="Images\bggg.jpg" />
@@ -202,22 +228,42 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Gallery.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <Content Include="Images\possiblewallpapers\Thumbs.db" />
     <Content Include="Images\Thumbs.db" />
+    <EntityDeploy Include="Photofolio.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Photofolio.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Photofolio.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Photofolio.edmx</DependentUpon>
+      <LastGenOutput>Photofolio.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Photofolio.edmx.diagram">
+      <DependentUpon>Photofolio.edmx</DependentUpon>
+    </Content>
+    <Content Include="Photofolio.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Photofolio.edmx</DependentUpon>
+      <LastGenOutput>Photofolio.cs</LastGenOutput>
+    </Content>
     <None Include="Project_Readme.html" />
+    <Content Include="Views\Home\UploadArt.cshtml" />
+    <Content Include="Views\Home\UploadPhoto.cshtml" />
+    <Content Include="Views\Home\MyAccount.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

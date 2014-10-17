@@ -287,3 +287,248 @@ footer p {
         clear: both;
     }
 }
+
+@media (max-width: 500px) {
+    .carousel-caption .inline {
+        font-size: 20px;
+    }
+
+    .carousel-caption .caption
+    {
+        font-size: 15px;
+    }
+
+    .carousel-caption .avgRating
+    {
+        font-size: 15px;
+        padding-top: 10px;
+    }
+}
+
+.carousel-caption {
+  position: static;
+  text-align: left;
+  padding-left: 20px;
+  
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+  background-color: black;
+  width: 100%;
+  opacity: 0.9;
+  z-index: auto;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 15%;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+  opacity: .5;
+  height: 83.5%
+}
+.carousel-control.right {
+  right: 0;
+  left: auto;
+
+}
+.carousel-control:hover,
+.carousel-control:focus {
+  color: #fff;
+  text-decoration: none;
+  outline: 0;
+  opacity: .9;
+}
+.carousel-control .icon-prev,
+.carousel-control .icon-next,
+.carousel-control .glyphicon-chevron-left,
+.carousel-control .glyphicon-chevron-right {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  display: inline-block;
+}
+.carousel-control .icon-prev,
+.carousel-control .glyphicon-chevron-left {
+  left: 50%;
+  margin-left: -10px;
+}
+.carousel-control .icon-next,
+.carousel-control .glyphicon-chevron-right {
+  right: 50%;
+  margin-right: -10px;
+}
+.carousel-control .icon-prev,
+.carousel-control .icon-next {
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  font-family: serif;
+}
+.carousel-control .icon-prev:before {
+  content: '\2039';
+}
+.carousel-control .icon-next:before {
+  content: '\203a';
+}
+
+@media screen and (min-width: 768px) {
+  .carousel-control .glyphicon-chevron-left,
+  .carousel-control .glyphicon-chevron-right,
+  .carousel-control .icon-prev,
+  .carousel-control .icon-next {
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+    font-size: 30px;
+  }
+  .carousel-control .glyphicon-chevron-left,
+  .carousel-control .icon-prev {
+    margin-left: -15px;
+  }
+  .carousel-control .glyphicon-chevron-right,
+  .carousel-control .icon-next {
+    margin-right: -15px;
+  }
+  .carousel-caption {
+    right: 20%;
+    left: 20%;
+    padding-bottom: 30px;
+  }
+  .carousel-indicators {
+    bottom: 20px;
+  }
+}
+
+.carousel-control.left {
+  background-image: none;
+  
+  background-repeat: repeat-x;
+}
+.carousel-control.right {
+  background-image: none;
+}
+
+#Menu-filter
+{
+    display: none;
+}
+
+#Menu-filter.toggled
+{
+    padding-left: 20px;
+}
+
+.float-right
+{
+    float: right;
+}
+
+.input-group
+{
+    margin-bottom: 2em;
+}
+
+.modal-body
+{
+    padding-bottom: 0px;
+}
+
+#Art-gallery {
+    display: none;
+}
+
+.display-inline
+{
+    display: inline;
+}
+
+#Top-header
+{
+    text-align: center;
+}
+
+#Top-header a
+{
+    text-decoration: none;
+    color: black;
+}
+
+#Art-header
+{
+    padding-right: 150px;
+}
+
+#Gallery-header
+{
+    padding-right: 20px;
+}
+
+#Show-upload-art
+{
+    margin-left: 20px;
+}
+
+#Show-upload-photo
+{
+    margin-left: 20px;
+}
+
+#Username-input
+{
+    display: none;
+}
+
+#Email-input
+{
+    display: none;
+}
+
+#staticForm label
+{
+    font-size: 1.2em;
+}
+
+#staticForm p
+{
+    font-size: 1em;
+}
+
+#changePWButton
+{
+    margin-left: 15px;
+    margin-bottom: 1em;
+}
+
+#Email-error-msg
+{
+    background-color: #EDD1D1;
+    border: 1px solid #ed7676;
+    display: none;
+}
+
+#Passreplace-error-msg
+{
+    display: none;
+    background-color: #EDD1D1;
+    border: 1px solid #ed7676;
+}
+
+#Password-error-msg
+{
+    
+    display: none;
+    background-color: #EDD1D1;
+    border: 1px solid #ed7676;
+}
+
+#Username-error-msg
+{
+    display: none;
+    background-color: #EDD1D1;
+    border: 1px solid #ed7676;
+}

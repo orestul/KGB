@@ -1,0 +1,56 @@
+﻿@using Photofolio.Models;
+@model Photofolio.Models.UserModel
+
+@(Html.BeginForm("RegisterUser", "User", FormMethod.Post, new { name = "registerForm" }))
+<div class="container">
+    <div class="box">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="~/Images/camera.jpg" width="500" height="300"/>
+            </div>
+
+            <div class="col-md-6" id="Register-div">
+                <div class="input-group" id="User-input-group">
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "Username", @name="Username", @onblur="return validateUsername();" })
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                </div>
+                <div class="alert alert-error" id="Username-error-msg">
+                    <strong>Error!</strong> Please enter letters, underscores or numbers only.
+                </div>
+                <div class="input-group">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email", @name="Email", @onblur="return validateEmail();" })
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-envelope"></i>
+                    </span>
+                </div>
+                <div class="alert alert-error" id="Email-error-msg">
+                    <strong>Error!</strong> Please enter a valid e-mail address.
+                </div>
+
+                <div class="input-group">
+                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "Password", @type = "password", @name="Password", @onblur="return validatePassword();"})
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-lock"></i>
+                    </span>
+                </div>
+                <div class="alert alert-error" id="Password-error-msg">
+                    
+                </div>
+
+                <div class="input-group">
+                    @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password", @type = "password", @name = "ConfirmPassword", @onblur = "return validatePassword();" })
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-lock"></i>
+                    </span>
+                </div>
+                <div class="alert alert-error" id="Passreplace-error-msg">
+
+                </div>
+                <input type="submit" class="btn btn-light float-right">
+            </div>
+            
+        </div>
+    </div>
+</div>

@@ -1,19 +1,25 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <title>PhotoFolio</title>
-    @Styles.Render("~/Content/Styles/css")
+
+
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/Styles/css")
 
 </head>
+
 <body>
     <div class="brand">PHOTO FOLIO</div>
     <div class="address-bar">
-        <a href="" class="whiteLink">Upload your art</a> | <a href="" class="whiteLink">
-            Upload your photos
-        </a> | <a href="" class="whiteLink">Find Photographers</a>
+        <a href="@Url.Action("UploadArt", "Home")" class="whiteLink">Upload your art</a> | <a href="@Url.Action("UploadPhoto", "Home")" class="whiteLink">
+    Upload your photos
+</a> | <a href="" class="whiteLink">Find Photographers</a>
     </div>
 
     <!-- Navigation -->
@@ -34,13 +40,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="@Url.Action("Index", "Home")">Home</a>
                     </li>
                     <li>
-                        <a href="gallery.html">Gallery</a>
+                        <a href="@Url.Action("Gallery", "Home")">Gallery</a>
                     </li>
                     <li>
-                        <a href="#topMembers">Top Members</a>
+                        <a href="@Url.Action("Index", "Home")#topMembers">Top Members</a>
                     </li>
                     <li>
                         <a data-toggle="modal" data-target="#searchModal">
@@ -51,6 +57,9 @@
                         <a data-toggle="modal" data-target="#loginModal">
                             Login
                         </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("MyAccount", "Home")">My Account</a>
                     </li>
                 </ul>
             </div>
@@ -126,7 +135,7 @@
                     <br>
                     <!--Username Input Box -->
                     <div class="row">
-                        <div class="col-xs-12" id="userBox">
+                        <div class="col-md-12" id="userBox">
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-user"></i>
@@ -134,9 +143,7 @@
                                 <input type="text" class="form-control" placeholder="Username" />
                             </div>
                         </div>
-                        <br>
-                        <br>
-                        <div class="col-xs-12" id="passwordBox">
+                        <div class="col-md-12" id="passwordBox">
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-lock"></i>
@@ -144,9 +151,12 @@
                                 <input type="password" class="form-control" placeholder="Password" />
                             </div>
                         </div>
-                        <br>
-                        <a href="" class="whiteFont">Don't have an account yet?<br> Sign up here!</a>
-                        <button type="button" class="btn btn-default floatRight">Login</button>
+                        <div class="col-md-10">
+                            <a href="@Url.Action("Register", "User")" class="whiteFont">Don't have an account yet?<br> Sign up here!</a>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-default floatRight">Login</button>
+                        </div>
                     </div>
 
                     <br>
@@ -160,7 +170,7 @@
         </div>
     </div>
 
-        @RenderBody()
+    @RenderBody()
 
 
     <footer>
@@ -175,20 +185,50 @@
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
     <script type="text/javascript">
-	$(document).ready(function(){
-	//  Check Radio-box
-		$(".rating input:radio").attr("checked", false);
-		$('.rating input').click(function () {
-			$(".rating span").removeClass('checked');
-			$(this).parent().addClass('checked');
-		});
+        $(document).ready(function () {
+            //  Check Radio-box
+            $(".rating input:radio").attr("checked", false);
+            $('.rating input').click(function () {
+                $(".rating span").removeClass('checked');
+                $(this).parent().addClass('checked');
+            });
 
-		$('input:radio').change(
-		function(){
-			var userRating = this.value;
-			alert(userRating);
-		});
-	});
+            $('input:radio').change(
+            function () {
+                var userRating = this.value;
+                alert(userRating);
+            });
+        });
+    </script>
+
+    <script>
+        function ChangeUsername() {
+            var element = document.getElementById('Change-user');
+            if (element.innerHTML == 'Edit..')
+            {
+                element.innerHTML = 'Cancel';
+                $("#User-display").hide(0);
+                $("#Username-input").fadeIn(500);
+            } else if(element.innerHTML == 'Cancel')
+            {
+                element.innerHTML = 'Edit..';
+                $("#User-display").fadeIn(500);
+                $("#Username-input").hide(0);
+            }
+        }
+
+        function ChangeEmail() {
+            var element = document.getElementById('Change-email');
+            if (element.innerHTML == 'Edit..') {
+                element.innerHTML = 'Cancel';
+                $("#Email-display").hide(0);
+                $("#Email-input").fadeIn(500);
+            } else if (element.innerHTML == 'Cancel') {
+                element.innerHTML = 'Edit..';
+                $("#Email-display").fadeIn(500);
+                $("#Email-input").hide(0);
+            }
+        }
     </script>
 
     <!-- jQuery Version 1.11.0 -->
@@ -198,38 +238,177 @@
     <script src="Scripts/bootstrap.min.js"></script>
 
     <script>
-	  $(document).ready(function(){
-            $("#photo").click(function() {
+        $(document).ready(function () {
+            $("#photo").click(function () {
                 $("#userSearch").hide(0);
-				$("#photoSearch").fadeIn(500);
-				$("#tagSearch").hide(0);
+                $("#photoSearch").fadeIn(500);
+                $("#tagSearch").hide(0);
             });
 
         });
     </script>
 
     <script>
-		$(document).ready(function() {
-		$("#user").click(function() {
-				$("#photoSearch").hide(0);
-				$("#tagSearch").hide(0);
-				$("#userSearch").fadeIn(500);
-			});
-		});
+        $(document).ready(function () {
+            $("#user").click(function () {
+                $("#photoSearch").hide(0);
+                $("#tagSearch").hide(0);
+                $("#userSearch").fadeIn(500);
+            });
+        });
     </script>
 
     <script>
-		$(document).ready(function() {
-			$("#tag").click(function() {
-				$("#userSearch").hide(0);
-				$("#photoSearch").hide(0);
-				$("#tagSearch").fadeIn(500);
-			});
-		});
+        $(document).ready(function () {
+            $("#tag").click(function () {
+                $("#userSearch").hide(0);
+                $("#photoSearch").hide(0);
+                $("#tagSearch").fadeIn(500);
+            });
+        });
     </script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script>
+        $("#filterToggle").click(function () {
+            $("#Menu-filter").toggleClass("toggled");
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#filterToggle").click(function () {
+                $("#Menu-filter").toggle(1000);
+            });
+
+        });
+    </script>
+
+    <script>
+    $("#changeForm").hide();
+    $("#changeButton").click(function () {
+        $("#staticForm, #changeForm").stop(true).slideToggle("slow");
+    });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#Art-header").click(function () {
+                $("#Photo-gallery").hide(0);
+                $("#Art-gallery").fadeIn(500);
+            });
+            $("#Gallery-header").click(function () {
+                $("#Art-gallery").hide(0);
+                $("#Photo-gallery").fadeIn(500);
+            });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('a[href*=#]:not([href=#carousel-example-generic])').click(function () {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html,body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+    $("#changePWButton").click(function () {
+        $("#changePWDiv").toggle("slow");
+    });
+    </script>
+    <script>
+
+        function validateUsername()
+        {
+            var name = document.forms["registerForm"]["Username"].value;
+
+            var pattern = /[^a-zA-Z0-9_s]/g;
+
+            if (name.length == 0) {
+                document.getElementById("Username-error-msg").innerHTML = ("");
+                document.getElementById("Username-error-msg").style.display = "none";
+                return false;
+            }
+
+            if (pattern.test(name)) {
+                document.getElementById("Username-error-msg").innerHTML = ("Please enter numbers, letters or underscores only.");
+                document.getElementById("Username-error-msg").style.display = "block";
+                return false;
+            }
+            else {
+                document.getElementById("Username-error-msg").innerHTML = ("");
+                document.getElementById("Username-error-msg").style.display = "none";
+                return true;
+            }
+        }
+
+        // tests the email field - shows non-alert error message
+        function validateEmail() {
+            var email = document.forms["registerForm"]["Email"].value;
+            var atpos = email.indexOf("@@");
+            var dotpos = email.lastIndexOf(".");
+
+            if (email.length == 0) {
+                document.getElementById("Email-error-msg").style.display = "none";
+                return false;
+            }
+
+            if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email.length) {
+                document.getElementById("Email-error-msg").style.display = "block";
+                return false;
+            }
+            else {
+                document.getElementById("Email-error-msg").style.display = "none";
+                return true;
+            }
+        }
+
+        // tests new password field - shows non-alert messages
+        function validatePassword() {
+            var Password = document.forms["registerForm"]["Password"].value;
+            var conPass = document.forms["registerForm"]["ConfirmPassword"].value;
+            var length = 8;
+
+            if (Password.length < length && Password.length > 0) {
+                document.getElementById("Password-error-msg").innerHTML = ("<strong>Error!</strong> Password must be at least 8 characters.");
+                document.getElementById("Password-error-msg").style.display = "block";
+                return false;
+            } else {
+                document.getElementById("Password-error-msg").innerHTML = ("");
+                document.getElementById("Password-error-msg").style.display = "none";
+                if (conPass.length == 0)
+                    document.getElementById("Passreplace-error-msg").innerHTML = ("");
+                document.getElementById("Passreplace-error-msg").style.display = "none";
+                while (conPass.length > 0) {
+                    if (Password.length < length)
+                    {
+                        document.getElementById("Passreplace-error-msg").innerHTML = ("");
+                        document.getElementById("Passreplace-error-msg").style.display = "none";
+                    }
+                    if (Password != conPass) {
+                        document.getElementById("Passreplace-error-msg").innerHTML = ("<strong>Error!</strong> Passwords don't match.");
+                        document.getElementById("Passreplace-error-msg").style.display = "block";
+                        return false;
+                    } else {
+                        document.getElementById("Passreplace-error-msg").innerHTML = ("");
+                        document.getElementById("Passreplace-error-msg").style.display = "none";
+                        return true;
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>
