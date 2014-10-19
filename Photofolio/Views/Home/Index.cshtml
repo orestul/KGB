@@ -1,9 +1,10 @@
-﻿
+﻿@model Photofolio.Models.UserModel
 <div class="container">
 
     <div class="row">
         <div class="box">
             <div class="col-lg-12 text-center">
+                <h5>Featured Photos</h5>
                 <div id="carousel-example-generic" class="carousel slide">
                     <!-- Indicators -->
                     <ol class="carousel-indicators hidden-xs">
@@ -15,9 +16,9 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active">
-                            <img class="img-responsive img-full" src="Images/slide-1.jpg" alt="">
+                            <img class="img-responsive img-full" src="~/Images/slide-1.jpg" alt="">
 
-                            <div class="carousel-caption visible-lg">
+                            <div class="carousel-caption">
                                 <div class="rating">
                                     <h2 class="inline">Caption 1</h2>
                                     <span><input type="radio" name="rating" id="str5" value="5"><label for="str5"></label></span>
@@ -33,8 +34,8 @@
 
                         </div>
                         <div class="item">
-                            <img class="img-responsive img-full" src="Images/slide-2.jpg" alt="">
-                            <div class="carousel-caption visible-lg">
+                            <img class="img-responsive img-full" src="~/Images/slide-2.jpg" alt="">
+                            <div class="carousel-caption">
                                 <div class="rating">
                                     <h2 class="inline">Caption 2</h2>
                                     <span><input type="radio" name="rating" id="str5" value="5"><label for="str5"></label></span>
@@ -50,8 +51,8 @@
                             </div>
                         </div>
                         <div class="item">
-                            <img class="img-responsive img-full" src="Images/slide-3.jpg" alt="">
-                            <div class="carousel-caption visible-lg">
+                            <img class="img-responsive img-full" src="~/Images/slide-3.jpg" alt="">
+                            <div class="carousel-caption">
                                 <div class="rating">
                                     <h2 class="inline">Caption 3</h2>
                                     <span><input type="radio" name="rating" id="str5" value="5"><label for="str5"></label></span>
@@ -100,182 +101,57 @@
                 </h2>
                 @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
-                    <!-- Error text <p class="text-danger">@</p>-->
+                    <!-- Error text <p class="text-danger">@@</p>-->
                     <input type="file" name="file" />
                     <input type="submit" name="Submit" id="Submit" value="Upload" />
                 }
+@if (Session["userName"] == null) { 
+using (Html.BeginForm("Login", "User", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <h4>Use a local account to log in.</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Username, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+        </div>
+            <p>
+            <input type="submit" name="Submit" id="Submit" value="Login" />
+            </p>
+    </div>
+}
+                }
                 <hr>
-                <div class="col-md-6">
-                    <div class="well well-lg">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <img src="http://placehold.it/75x75" class="img-responsive">
-                            </div>
-                            <div class="col-sm-9">
-                                DummyOne
-                                <br>
-                                Las Vegas, Nevada
-                                <br>
-                                Photographer | Artist | Awesome
-                                <br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="well well-lg">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <img src="http://placehold.it/75x75" class="img-responsive">
-                            </div>
-                            <div class="col-sm-9">
-                                DummyOne
-                                <br>
-                                Las Vegas, Nevada
-                                <br>
-                                Photographer | Artist | Awesome
-                                <br>
+                @for (int i = 0; i < 10; i++)   
+                { 
+                    <div class="col-md-6">
+                        <div class="well well-lg">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <img src="http://placehold.it/75x75" class="img-responsive">
+                                </div>
+                                <div class="col-sm-9">
+                                    DummyOne
+                                    <br>
+                                    Las Vegas, Nevada
+                                    <br>
+                                    Photographer | Artist | Awesome
+                                    <br>
+                                </div>
                             </div>
                         </div>
                     </div>
+                }
                 </div>
-                <div class="col-md-6">
-                    <div class="well well-lg">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <img src="http://placehold.it/75x75" class="img-responsive">
-                            </div>
-                            <div class="col-sm-9">
-                                DummyOne
-                                <br>
-                                Las Vegas, Nevada
-                                <br>
-                                Photographer | Artist | Awesome
-                                <br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="well well-lg">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <img src="http://placehold.it/75x75" class="img-responsive">
-                            </div>
-                            <div class="col-sm-9">
-                                DummyOne
-                                <br>
-                                Las Vegas, Nevada
-                                <br>
-                                Photographer | Artist | Awesome
-                                <br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="well well-lg">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <img src="http://placehold.it/75x75" class="img-responsive">
-                        </div>
-                        <div class="col-sm-9">
-                            DummyOne
-                            <br>
-                            Las Vegas, Nevada
-                            <br>
-                            Photographer | Artist | Awesome
-                            <br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="well well-lg">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <img src="http://placehold.it/75x75" class="img-responsive">
-                        </div>
-                        <div class="col-sm-9">
-                            DummyOne
-                            <br>
-                            Las Vegas, Nevada
-                            <br>
-                            Photographer | Artist | Awesome
-                            <br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="well well-lg">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <img src="http://placehold.it/75x75" class="img-responsive">
-                        </div>
-                        <div class="col-sm-9">
-                            DummyOne
-                            <br>
-                            Las Vegas, Nevada
-                            <br>
-                            Photographer | Artist | Awesome
-                            <br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="well well-lg">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <img src="http://placehold.it/75x75" class="img-responsive">
-                        </div>
-                        <div class="col-sm-9">
-                            DummyOne
-                            <br>
-                            Las Vegas, Nevada
-                            <br>
-                            Photographer | Artist | Awesome
-                            <br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="well well-lg">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <img src="http://placehold.it/75x75" class="img-responsive">
-                        </div>
-                        <div class="col-sm-9">
-                            DummyOne
-                            <br>
-                            Las Vegas, Nevada
-                            <br>
-                            Photographer | Artist | Awesome
-                            <br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="well well-lg">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <img src="http://placehold.it/75x75" class="img-responsive">
-                        </div>
-                        <div class="col-sm-9">
-                            DummyOne
-                            <br>
-                            Las Vegas, Nevada
-                            <br>
-                            Photographer | Artist | Awesome
-                            <br>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <div class="row">

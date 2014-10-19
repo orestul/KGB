@@ -21,33 +21,40 @@ namespace Photofolio.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Gallery()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
+        public ActionResult UploadArt()
+        {
+            return View();
+        }
+
+        public ActionResult UploadPhoto()
+        {
+            return View();
+        }
+
+        public ActionResult MyAccount()
+        {
             return View();
         }
 
         [HttpPost]
         public ActionResult Upload(HttpPostedFileBase file)
         {
-           if (file != null && file.ContentLength > 0)
-           {
-               var fileName = Path.GetFileName(file.FileName);
-               var path = Path.Combine(Server.MapPath("~/Images/Uploads"), fileName);
-               if (System.IO.File.Exists(path))
-               {
-                   return RedirectToAction("Error");
-               }
-               file.SaveAs(path);
-           }
+            if (file != null && file.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/Images/Uploads"), fileName);
+                if (System.IO.File.Exists(path))
+                {
+                    return RedirectToAction("Error");
+                }
+                file.SaveAs(path);
+            }
 
             return RedirectToAction("Index");
         }
