@@ -1,4 +1,6 @@
 ﻿@model Photofolio.Models.UserModel
+
+
 <div class="container">
 
     <div class="row">
@@ -99,37 +101,7 @@
                 <h2 class="intro-text text-center">
                     <strong>Top Members of the week</strong>
                 </h2>
-                @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
-                    <!-- Error text <p class="text-danger">@@</p>-->
-                    <input type="file" name="file" />
-                    <input type="submit" name="Submit" id="Submit" value="Upload" />
-                }
-@if (Session["userName"] == null) { 
-using (Html.BeginForm("Login", "User", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    <h4>Use a local account to log in.</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Username, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-        </div>
-            <p>
-            <input type="submit" name="Submit" id="Submit" value="Login" />
-            </p>
-    </div>
-}
-                }
+
                 <hr>
                 @for (int i = 0; i < 10; i++)   
                 { 

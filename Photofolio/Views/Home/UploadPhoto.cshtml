@@ -8,7 +8,13 @@
                     <strong>My Photos</strong>
                 </h2>
                 <hr>
-                <button type="button" class="btn-btn-default" id="Show-upload-photo">Upload Photos</button>
+                @using (Html.BeginForm("UploadPhoto", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <!-- Error text <p class="text-danger">@@</p>-->
+                    <input type="file" name="file" id="file" class="hidden"/>
+                    <button type="button" class="btn btn-default display-inline" onclick="document.getElementById('file').click();">Upload Photos</button>
+                    <input type="submit" name="Submit" id="Submit" value="Upload" class="display-inline"/>
+                }
                 <br />
                 <br />
                 @for (int i = 0; i < 3; i++)

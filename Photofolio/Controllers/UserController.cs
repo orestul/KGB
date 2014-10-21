@@ -77,7 +77,7 @@ namespace Photofolio.Controllers
                 User login = UserModel.Login(user);
                 if (login != null)
                 {
-                    Session["userName"] = login.Username; 
+                    Session["userName"] = login.Username;
                     return RedirectToAction("Index", "Home");
                 }
                 else

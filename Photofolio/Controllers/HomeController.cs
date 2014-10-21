@@ -43,12 +43,29 @@ namespace Photofolio.Controllers
         }
 
         [HttpPost]
-        public ActionResult Upload(HttpPostedFileBase file)
+        public ActionResult UploadPhoto(HttpPostedFileBase file)
         {
             if (file != null && file.ContentLength > 0)
             {
                 var fileName = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/Images/Uploads"), fileName);
+                var path = Path.Combine(Server.MapPath("~/Images/Uploads/Photos"), fileName);
+                if (System.IO.File.Exists(path))
+                {
+                    return RedirectToAction("Error");
+                }
+                file.SaveAs(path);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult UploadArt(HttpPostedFileBase file)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/Images/Uploads/Art"), fileName);
                 if (System.IO.File.Exists(path))
                 {
                     return RedirectToAction("Error");

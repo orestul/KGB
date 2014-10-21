@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model Photofolio.Models.UserModel
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -22,51 +23,96 @@
 </a> | <a href="" class="whiteLink">Find Photographers</a>
     </div>
 
+    @{
+        if (Session["userName"] != null)
+        {
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+                        <a class="navbar-brand" href="index.html">Business Casual</a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="@Url.Action("Index", "Home")">Home</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Gallery", "Home")">Gallery</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "Home")#topMembers">Top Members</a>
+                            </li>
+                            <li>
+                                <a data-toggle="modal" data-target="#searchModal">
+                                    Search
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("MyAccount", "Home")">My Account</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container -->
+            </nav>
+        }
+        else
+        { 
+                        <nav class="navbar navbar-default" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+                        <a class="navbar-brand" href="index.html">Business Casual</a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="@Url.Action("Index", "Home")">Home</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Gallery", "Home")">Gallery</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "Home")#topMembers">Top Members</a>
+                            </li>
+                            <li>
+                                <a data-toggle="modal" data-target="#searchModal">
+                                    Search
+                                </a>
+                            </li>
+                            <li>
+                                <a data-toggle="modal" data-target="#loginModal">
+                                    Login
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container -->
+            </nav>
+        }
+    }
     <!-- Navigation -->
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="index.html">Business Casual</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="@Url.Action("Index", "Home")">Home</a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Gallery", "Home")">Gallery</a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Index", "Home")#topMembers">Top Members</a>
-                    </li>
-                    <li>
-                        <a data-toggle="modal" data-target="#searchModal">
-                            Search
-                        </a>
-                    </li>
-                    <li>
-                        <a data-toggle="modal" data-target="#loginModal">
-                            Login
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("MyAccount", "Home")">My Account</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+    
     <!-- Modal -->
     <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -124,13 +170,15 @@
             </div>
         </div>
     </div>
-
+    @{
+    using (Html.BeginForm("Login", "User", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
     <div class="modal fade bs-example-modal-sm" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content" id="loginModalContent">
 
                 <div class="modal-body">
-
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <h3 class="whiteFont">Log In To Photo Folio</h3>
                     <br>
                     <!--Username Input Box -->
@@ -140,7 +188,8 @@
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-user"></i>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Username" />
+                                @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-md-12" id="passwordBox">
@@ -148,14 +197,15 @@
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-lock"></i>
                                 </span>
-                                <input type="password" class="form-control" placeholder="Password" />
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-md-10">
                             <a href="@Url.Action("Register", "User")" class="whiteFont">Don't have an account yet?<br> Sign up here!</a>
                         </div>
                         <div class="col-md-2">
-                            <button type="button" class="btn btn-default floatRight">Login</button>
+                            <button type="submit" class="btn btn-default" name="Submit" id="Submit">Login</button>
                         </div>
                     </div>
 
@@ -169,7 +219,8 @@
             </div>
         </div>
     </div>
-
+    }
+    }
     @RenderBody()
 
 
