@@ -48,7 +48,12 @@ namespace Photofolio.Controllers
             if (file != null && file.ContentLength > 0)
             {
                 var fileName = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/Images/Uploads/Photos"), fileName);
+                var path = Server.MapPath("~/Images/Uploads/" + Session["userName"] + "/Photos");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                path = Path.Combine(path, fileName);
                 if (System.IO.File.Exists(path))
                 {
                     return RedirectToAction("Error");
@@ -65,7 +70,12 @@ namespace Photofolio.Controllers
             if (file != null && file.ContentLength > 0)
             {
                 var fileName = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/Images/Uploads/Art"), fileName);
+                var path = Server.MapPath("~/Images/Uploads/" + Session["userName"] + "/Art");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                path = Path.Combine(path, fileName);
                 if (System.IO.File.Exists(path))
                 {
                     return RedirectToAction("Error");

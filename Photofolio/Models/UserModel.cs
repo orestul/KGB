@@ -21,7 +21,6 @@ namespace Photofolio.Models
             newUser.Email = user.Email;
             db.Users.Add(newUser);
             db.SaveChanges();
-            db.Dispose();
         }
         public static User Login(UserModel user)
         {
