@@ -1,40 +1,12 @@
-﻿@{
-    ViewBag.Title = "About";
+﻿@model IEnumerable<Login.Models.Upload>
+@using Login.Models;
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "Gallery";
 }
-
-
 <div class="container">
-
-    <!--<div class="row">
-        <div class="box">
-            <div class="col-lg-12">
-                <hr>
-                <h2 class="intro-text text-center">About
-                    <strong>business casual</strong>
-                </h2>
-                <hr>
-            </div>
-            <div class="col-md-6">
-                <img class="img-responsive img-border-left" src="img/slide-2.jpg" alt="">
-            </div>
-            <div class="col-md-6">
-                <p>This is a great place to introduce your company or project and describe what you do.</p>
-                <p>Lid est laborum dolo rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats vitaes nemo minima rerums unsers sadips amets.</p>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>-->
-
     <div class="row">
-
         <div class="box">
-
-
-            <!-- /#sidebar-wrapper -->
-
-
-
             <div class="col-lg-12" id="Top-header">
                 <hr>
                 <a href="javascript:void(0)">
@@ -48,7 +20,7 @@
                     </h2>
                 </a>
                 <hr>
-                </div>
+            </div>
             <br>
             <div id="Photo-gallery">
                 <a href="#menu-toggle" class="btn btn-default" id="filterToggle">Filter photos..</a>
@@ -68,50 +40,89 @@
                         </tr>
                     </table>
                 </div>
-                <br>
-                <br>
-                <div class="col-sm-4 text-center">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                    <h3>
-                        John Smith
-                        <small>Job Title</small>
-                    </h3>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                    <h3>
-                        John Smith
-                        <small>Job Title</small>
-                    </h3>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                    <h3>
-                        John Smith
-                        <small>Job Title</small>
-                    </h3>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                    <h3>
-                        John Smith
-                        <small>Job Title</small>
-                    </h3>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                    <h3>
-                        John Smith
-                        <small>Job Title</small>
-                    </h3>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                    <h3>
-                        John Smith
-                        <small>Job Title</small>
-                    </h3>
-                </div>
+                <br />
+                <br />
+                @foreach (var item in Model)
+                {
+                    if (item.category == "Photos")
+                    {
+                        <div class="col-sm-4 text-center">
+                            <img class="img-responsive" src="~/@item.location" alt="">
+                            <h3 class="float-left">
+                                @item.username
+                            </h3>
+                            @*@for (int count = 1; count < @item.rating + 1; count++)
+                                {
+                                    <div class="rating">
+                                        <span><input type="radio" name="rating" id="@count" value="@count"><label for="@count"></label></span>
+                                    </div>
+                                }*@
+                            @if (item.rating > 0)
+                            {
+                                if (item.rating == 1)
+                                {
+                                    <div class="rating" id="rating-@{@item.UploadID}">
+                                        <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5"><label for="@{@item.UploadID}str5"></label></span>
+                                        <span><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4"><label for="@{@item.UploadID}str4"></label></span>
+                                        <span><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3"><label for="@{@item.UploadID}str3"></label></span>
+                                        <span><input type="radio" name="rating" id="@{@item.UploadID}str2" value="2"><label for="@{@item.UploadID}str2"></label></span>
+                                        <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1"><label for="@{@item.UploadID}str1"></label></span>
+                                    </div>
+                                }
+                                else if (item.rating == 2)
+                                {
+                                    <div class="rating" id="rating-@{@item.UploadID}">
+                                        <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5"><label for="@{@item.UploadID}str5"></label></span>
+                                        <span><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4"><label for="@{@item.UploadID}str4"></label></span>
+                                        <span><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3"><label for="@{@item.UploadID}str3"></label></span>
+                                        <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str2" value="2"><label for="@{@item.UploadID}str2"></label></span>
+                                        <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1"><label for="@{@item.UploadID}str1"></label></span>
+                                    </div>
+                                }
+                                else if (item.rating == 3)
+                                {
+                                    <div class="rating" id="rating-@{@item.UploadID}">
+                                        <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5"><label for="@{@item.UploadID}str5"></label></span>
+                                        <span><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4"><label for="@{@item.UploadID}str4"></label></span>
+                                        <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3"><label for="@{@item.UploadID}str3"></label></span>
+                                        <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str2" value="2"><label for="@{@item.UploadID}str2"></label></span>
+                                        <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1"><label for="@{@item.UploadID}str1"></label></span>
+                                    </div>
+                                }
+                                else if (item.rating == 4)
+                                {
+                                    <div class="rating" id="rating-@{@item.UploadID}">
+                                        <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5"><label for="@{@item.UploadID}str5"></label></span>
+                                        <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4"><label for="@{@item.UploadID}str4"></label></span>
+                                        <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3"><label for="@{@item.UploadID}str3"></label></span>
+                                        <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str2" value="2"><label for="@{@item.UploadID}str2"></label></span>
+                                        <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1"><label for="@{@item.UploadID}str1"></label></span>
+                                    </div>
+                                }
+                                else if (item.rating == 5)
+                                {
+                                    <div class="rating" id="rating-@{@item.UploadID}">
+                                        <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5"><label for="@{@item.UploadID}str5"></label></span>
+                                        <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4"><label for="@{@item.UploadID}str4"></label></span>
+                                        <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3"><label for="@{@item.UploadID}str3"></label></span>
+                                        <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str2" value="2"><label for="@{@item.UploadID}str2"></label></span>
+                                        <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1"><label for="@{@item.UploadID}str1"></label></span>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="rating" id="rating-@{@item.UploadID}">
+                                    <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5"><label for="@{@item.UploadID}str5"></label></span>
+                                    <span><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4"><label for="@{@item.UploadID}str4"></label></span>
+                                    <span><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3"><label for="@{@item.UploadID}str3"></label></span>
+                                    <span><input type="radio" name="rating" id="@{@item.UploadID}str2" value="2"><label for="@{@item.UploadID}str2"></label></span>
+                                    <span><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1"><label for="@{@item.UploadID}str1"></label></span>
+                                </div>
+                            }
+                        </div>
+                    }
+                }
             </div>
             <div id="Art-gallery">
                 <a href="#menu-toggle" class="btn btn-default" id="filterToggle">Filter photos..</a>

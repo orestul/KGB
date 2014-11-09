@@ -4,26 +4,23 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data;
+using System.Data.Entity;
+using Login.Models;
 
-namespace Photofolio.Controllers
+namespace Login.Controllers
 {
     public class HomeController : Controller
     {
+        private Entities db = new Entities();
         public ActionResult Index()
         {
-            ViewBag.Title = "PhotoFolio";
-            return View();
-        }
-
-        public ActionResult Error()
-        {
-
             return View();
         }
 
         public ActionResult Gallery()
         {
-            return View();
+            return View(db.Uploads.ToList());
         }
 
 
@@ -37,10 +34,6 @@ namespace Photofolio.Controllers
             return View();
         }
 
-        public ActionResult MyAccount()
-        {
-            return View();
-        }
 
         [HttpPost]
         public ActionResult UploadPhoto(HttpPostedFileBase file)

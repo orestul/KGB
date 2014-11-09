@@ -7,9 +7,9 @@ using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using System;
-using Photofolio.Models;
+using Login.Models;
 
-namespace Photofolio
+namespace Login
 {
     public partial class Startup
     {

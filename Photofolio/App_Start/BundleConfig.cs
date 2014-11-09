@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Photofolio
+namespace Login
 {
     public class BundleConfig
     {
@@ -23,13 +23,13 @@ namespace Photofolio
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/Styles/css").Include("~/Content/Styles/bootstrap.css",
-                                                                        "~/Content/Styles/photofolio.css"));
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/site.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = true;
-            bundles.IgnoreList.Clear();
         }
     }
 }

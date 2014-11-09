@@ -1,0 +1,20 @@
+﻿CREATE TABLE Ratings
+(
+	[RatingID] INT NOT NULL  identity, 
+    [RatingValue] INT NOT NULL, 
+    [Username] NVARCHAR(256) NOT NULL, 
+    [UploadID] INT NOT NULL, 
+    CONSTRAINT [FK_Ratings_AspNetUsers] FOREIGN KEY ([Username]) REFERENCES [AspNetUsers]([UserName]), 
+    CONSTRAINT [FK_Ratings_Uploads] FOREIGN KEY ([UploadID]) REFERENCES [Uploads]([UploadID]), 
+    PRIMARY KEY ([RatingID],[Username],[UploadID]),
+)
+
+CREATE TABLE [dbo].[Uploads] (
+    [UploadID] INT            IDENTITY (1, 1) NOT NULL,
+    [category] VARCHAR (50)   NOT NULL,
+    [location] VARCHAR (500)  NOT NULL,
+    [username] NVARCHAR (256) NOT NULL,
+    PRIMARY KEY CLUSTERED ([UploadID] ASC),
+    CONSTRAINT [FK_Username_Users] FOREIGN KEY ([username]) REFERENCES [dbo].[AspNetUsers] ([UserName])
+);
+

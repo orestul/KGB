@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Photofolio", "Photofolio\Photofolio.csproj", "{96163309-7F3B-4BA4-9A34-306E94428295}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Photofolio", "Photofolio\Photofolio.csproj", "{EEA91FEE-D3C7-4948-9466-88AC13F7E79F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{96163309-7F3B-4BA4-9A34-306E94428295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{96163309-7F3B-4BA4-9A34-306E94428295}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{96163309-7F3B-4BA4-9A34-306E94428295}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{96163309-7F3B-4BA4-9A34-306E94428295}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEA91FEE-D3C7-4948-9466-88AC13F7E79F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEA91FEE-D3C7-4948-9466-88AC13F7E79F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEA91FEE-D3C7-4948-9466-88AC13F7E79F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEA91FEE-D3C7-4948-9466-88AC13F7E79F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

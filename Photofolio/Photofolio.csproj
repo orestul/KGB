@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{96163309-7F3B-4BA4-9A34-306E94428295}</ProjectGuid>
+    <ProjectGuid>{EEA91FEE-D3C7-4948-9466-88AC13F7E79F}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Photofolio</RootNamespace>
-    <AssemblyName>Photofolio</AssemblyName>
+    <RootNamespace>Login</RootNamespace>
+    <AssemblyName>Login</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -161,49 +161,66 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\RatingsController.cs" />
+    <Compile Include="Controllers\UploadsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>PhotofolioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>PhotofolioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>PhotofolioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>PhotofolioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>PhotofolioModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\UserModel.cs" />
-    <Compile Include="Photofolio.Context.cs">
+    <Compile Include="Models\PhotofolioModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Photofolio.Context.tt</DependentUpon>
+      <DependentUpon>PhotofolioModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Photofolio.cs">
+    <Compile Include="Models\PhotofolioModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Photofolio.tt</DependentUpon>
+      <DependentUpon>PhotofolioModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Photofolio.Designer.cs">
+    <Compile Include="Models\PhotofolioModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Photofolio.edmx</DependentUpon>
+      <DependentUpon>PhotofolioModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Rating.cs">
+      <DependentUpon>PhotofolioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Upload.cs">
+      <DependentUpon>PhotofolioModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="User.cs">
-      <DependentUpon>Photofolio.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Photofolio.mdf" />
-    <Content Include="App_Data\Photofolio_log.ldf">
-      <DependentUpon>Photofolio.mdf</DependentUpon>
-    </Content>
-    <Content Include="Content\Styles\bootstrap.css" />
-    <Content Include="Content\Styles\bootstrap.min.css" />
-    <Content Include="Content\Styles\photofolio.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="docs\TextFile1.txt" />
     <Content Include="favicon.ico" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
     <Content Include="Images\bg.jpg" />
     <Content Include="Images\bggg.jpg" />
     <Content Include="Images\bnw.jpg" />
+    <Content Include="Images\camera.jpg" />
     <Content Include="Images\fishing.jpg" />
     <Content Include="Images\fiveStar.png" />
     <Content Include="Images\intro-pic.jpg" />
@@ -214,9 +231,46 @@
     <Content Include="Images\slide-3.jpg" />
     <Content Include="Images\starEmpty.png" />
     <Content Include="Images\starFull.png" />
+    <Content Include="Images\Uploads\Art\logo.png" />
+    <Content Include="Images\Uploads\izmigo\Photos\gif2.gif" />
+    <Content Include="Images\Uploads\Photos\jump.png" />
+    <Content Include="Images\Uploads\testuser\Photos\widebrushset.jpeg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.11.0.js" />
+    <Content Include="Images\possiblewallpapers\Thumbs.db" />
+    <Content Include="Images\Uploads\Art\Thumbs.db" />
+    <Content Include="Images\Uploads\Photos\Thumbs.db" />
+    <Content Include="Images\Uploads\Thumbs.db" />
+    <Content Include="ClassDiagram1.cd" />
+    <EntityDeploy Include="Models\PhotofolioModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PhotofolioModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\PhotofolioModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PhotofolioModel.edmx</DependentUpon>
+      <LastGenOutput>PhotofolioModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\PhotofolioModel.edmx.diagram">
+      <DependentUpon>PhotofolioModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\PhotofolioModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PhotofolioModel.edmx</DependentUpon>
+      <LastGenOutput>PhotofolioModel.cs</LastGenOutput>
+    </Content>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -228,46 +282,54 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\UploadArt.cshtml" />
     <Content Include="Views\Home\Gallery.cshtml" />
-    <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\UploadPhoto.cshtml" />
+    <Content Include="Views\Ratings\Create.cshtml" />
+    <Content Include="Views\Ratings\Delete.cshtml" />
+    <Content Include="Views\Ratings\Details.cshtml" />
+    <Content Include="Views\Ratings\Edit.cshtml" />
+    <Content Include="Views\Ratings\Index.cshtml" />
+    <Content Include="Views\Uploads\Create.cshtml" />
+    <Content Include="Views\Uploads\Delete.cshtml" />
+    <Content Include="Views\Uploads\Details.cshtml" />
+    <Content Include="Views\Uploads\Edit.cshtml" />
+    <Content Include="Views\Uploads\Index.cshtml" />
+    <Content Include="Views\AspNetUsers\Create.cshtml" />
+    <Content Include="Views\AspNetUsers\Delete.cshtml" />
+    <Content Include="Views\AspNetUsers\Details.cshtml" />
+    <Content Include="Views\AspNetUsers\Edit.cshtml" />
+    <Content Include="Views\AspNetUsers\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
-    <Content Include="Images\possiblewallpapers\Thumbs.db" />
-    <Content Include="Images\Thumbs.db" />
-    <EntityDeploy Include="Photofolio.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Photofolio.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Photofolio.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Photofolio.edmx</DependentUpon>
-      <LastGenOutput>Photofolio.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Photofolio.edmx.diagram">
-      <DependentUpon>Photofolio.edmx</DependentUpon>
-    </Content>
-    <Content Include="Photofolio.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Photofolio.edmx</DependentUpon>
-      <LastGenOutput>Photofolio.cs</LastGenOutput>
-    </Content>
-    <None Include="Project_Readme.html" />
-    <Content Include="Views\Home\UploadArt.cshtml" />
-    <Content Include="Views\Home\UploadPhoto.cshtml" />
-    <Content Include="Views\Home\MyAccount.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\Uploads\Art\" />
-    <Folder Include="Images\Uploads\Photos\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -285,9 +347,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>10322</DevelopmentServerPort>
+          <DevelopmentServerPort>51976</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:4956/</IISUrl>
+          <IISUrl>http://localhost:51976/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

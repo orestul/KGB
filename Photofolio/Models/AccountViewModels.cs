@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Photofolio.Models
+namespace Login.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
@@ -8,6 +8,8 @@ namespace Photofolio.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        public string Username { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -49,7 +51,6 @@ namespace Photofolio.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
-
     }
 
     public class RegisterViewModel
@@ -58,6 +59,11 @@ namespace Photofolio.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "Please enter letters, numbers and symbols only")]
+        [Display(Name = "Username")]
+        public string Username { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

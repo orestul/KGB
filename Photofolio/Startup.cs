@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Photofolio.Startup))]
-namespace Photofolio
+[assembly: OwinStartupAttribute(typeof(Login.Startup))]
+namespace Login
 {
     public partial class Startup
     {
