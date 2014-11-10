@@ -42,6 +42,50 @@
 {
 	display: inline;
 }
+
+.static-rating span { width: 30px; height: 30px;float:right; position:relative; }
+.static-rating span input {
+    position:absolute;
+    top:0px;
+    left:0px;
+    opacity:0;
+    width: 35px;
+    height: 35px;
+    border:1px solid black;
+}
+.static-rating span label {
+    display:inline-block;
+    width:30px;
+    height:30px;
+    text-align:center;
+    color:#FFF;
+    background: url('../../Images/starEmpty.png') no-repeat;
+	background-size: 30px 30px;
+    font-size:30px;
+    margin-right:2px;
+    line-height:30px;
+}
+
+.rating-error
+{
+    display: none;
+}
+
+.rating-error-msg
+{
+    padding-left: 40px;
+    color: red;
+    font-size: 15px;
+    
+}
+
+.static-rating span.checked label,
+.static-rating span.checked ~ span label {
+    background: url('../../Images/starFull.png') no-repeat;
+	background-size: 30px 30px;
+    color:#FFF;
+}
+
 .rating span { width: 30px; height: 30px;float:right; position:relative; }
 .rating span input {
     position:absolute;

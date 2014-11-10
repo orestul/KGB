@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Login.Models;
+@using Microsoft.AspNet.Identity;
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -32,21 +34,21 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                 {
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Gallery", "Gallery", "Home")</li>
-                    <li><a href="@Url.Action("Index", "Home")#topMembers">Top Members</a></li>
-                    <li>
-                        <a data-toggle="modal" data-target="#searchModal">
-                            Search
-                        </a>
-                    </li>
-                    @Html.Partial("_LoginPartial")
-                </ul>
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Gallery", "Gallery", "Home")</li>
+                        <li><a href="@Url.Action("Index", "Home")#topMembers">Top Members</a></li>
+                        <li>
+                            <a data-toggle="modal" data-target="#searchModal">
+                                Search
+                            </a>
+                        </li>
+                        @Html.Partial("_LoginPartial")
+                    </ul>
                 }
             </div>
         </div>
-        </nav>
+    </nav>
 
     <!-- Modal -->
     <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -106,15 +108,39 @@
         </div>
     </div>
 
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>
-        </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+
+
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('[id^=error-]').mouseout(function () {
+            $(this).prev().show();
+            $(this).hide();
+        });
+        $('[id^=static-rating-]').hover(function () {
+                $(this).hide();
+                $(this).next().show();
+        });
+
+        $('input:radio').change(
+        function () {
+            var userRating = this.value;
+            alert(userRating);
+        });
+    });
+    </script>
+
+
+
     <script type="text/javascript">
         $(document).ready(function () {
             //  Check Radio-box
@@ -138,9 +164,11 @@
                     $(this).nextAll().children('label').css("background", "url('../../Images/starFull.png')");
                     $(this).nextAll().children('label').css("background-size", "30px 30px");
                 });
-                
+
+
+
             });
-            
+
             $('input:radio').change(
             function () {
                 var userRating = this.value;
@@ -152,13 +180,11 @@
     <script>
         function ChangeUsername() {
             var element = document.getElementById('Change-user');
-            if (element.innerHTML == 'Edit..')
-            {
+            if (element.innerHTML == 'Edit..') {
                 element.innerHTML = 'Cancel';
                 $("#User-display").hide(0);
                 $("#Username-input").fadeIn(500);
-            } else if(element.innerHTML == 'Cancel')
-            {
+            } else if (element.innerHTML == 'Cancel') {
                 element.innerHTML = 'Edit..';
                 $("#User-display").fadeIn(500);
                 $("#Username-input").hide(0);
@@ -251,10 +277,10 @@
     </script>
 
     <script>
-    $("#changeForm").hide();
-    $("#changeButton").click(function () {
-        $("#staticForm, #changeForm").stop(true).slideToggle("slow");
-    });
+        $("#changeForm").hide();
+        $("#changeButton").click(function () {
+            $("#staticForm, #changeForm").stop(true).slideToggle("slow");
+        });
     </script>
 
     <script>
@@ -287,14 +313,13 @@
         });
     </script>
     <script>
-    $("#changePWButton").click(function () {
-        $("#changePWDiv").toggle("slow");
-    });
+        $("#changePWButton").click(function () {
+            $("#changePWDiv").toggle("slow");
+        });
     </script>
     <script>
 
-        function validateUsername()
-        {
+        function validateUsername() {
             var name = document.forms["registerForm"]["Username"].value;
 
             var pattern = /[^a-zA-Z0-9_s]/g;
@@ -355,8 +380,7 @@
                     document.getElementById("Passreplace-error-msg").innerHTML = ("");
                 document.getElementById("Passreplace-error-msg").style.display = "none";
                 while (conPass.length > 0) {
-                    if (Password.length < length)
-                    {
+                    if (Password.length < length) {
                         document.getElementById("Passreplace-error-msg").innerHTML = ("");
                         document.getElementById("Passreplace-error-msg").style.display = "none";
                     }
@@ -374,7 +398,7 @@
         }
     </script>
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </body>
 </html>

@@ -59,60 +59,64 @@
                                 }*@
                             @if (item.rating > 0)
                             {
-                                if (item.rating == 1)
-                                {
-                                    <div class="rating" id="rating-@{@item.UploadID}">
+                                <div class="@(User.Identity.IsAuthenticated ? "rating" : "static-rating")" id="@(User.Identity.IsAuthenticated ? "rating" : "static-rating")-@{@item.UploadID}">
+
+
+                                    @if (item.rating == 1)
+                                    {
+
                                         <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5"><label for="@{@item.UploadID}str5"></label></span>
                                         <span><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4"><label for="@{@item.UploadID}str4"></label></span>
                                         <span><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3"><label for="@{@item.UploadID}str3"></label></span>
                                         <span><input type="radio" name="rating" id="@{@item.UploadID}str2" value="2"><label for="@{@item.UploadID}str2"></label></span>
                                         <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1"><label for="@{@item.UploadID}str1"></label></span>
-                                    </div>
-                                }
-                                else if (item.rating == 2)
-                                {
-                                    <div class="rating" id="rating-@{@item.UploadID}">
+
+                                    }
+                                    else if (item.rating == 2)
+                                    {
+
                                         <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5"><label for="@{@item.UploadID}str5"></label></span>
                                         <span><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4"><label for="@{@item.UploadID}str4"></label></span>
                                         <span><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3"><label for="@{@item.UploadID}str3"></label></span>
                                         <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str2" value="2"><label for="@{@item.UploadID}str2"></label></span>
                                         <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1"><label for="@{@item.UploadID}str1"></label></span>
-                                    </div>
-                                }
-                                else if (item.rating == 3)
-                                {
-                                    <div class="rating" id="rating-@{@item.UploadID}">
+
+                                    }
+                                    else if (item.rating == 3)
+                                    {
+
                                         <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5"><label for="@{@item.UploadID}str5"></label></span>
                                         <span><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4"><label for="@{@item.UploadID}str4"></label></span>
                                         <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3"><label for="@{@item.UploadID}str3"></label></span>
                                         <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str2" value="2"><label for="@{@item.UploadID}str2"></label></span>
                                         <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1"><label for="@{@item.UploadID}str1"></label></span>
-                                    </div>
-                                }
-                                else if (item.rating == 4)
-                                {
-                                    <div class="rating" id="rating-@{@item.UploadID}">
+
+                                    }
+                                    else if (item.rating == 4)
+                                    {
+
                                         <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5"><label for="@{@item.UploadID}str5"></label></span>
                                         <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4"><label for="@{@item.UploadID}str4"></label></span>
                                         <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3"><label for="@{@item.UploadID}str3"></label></span>
                                         <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str2" value="2"><label for="@{@item.UploadID}str2"></label></span>
                                         <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1"><label for="@{@item.UploadID}str1"></label></span>
-                                    </div>
-                                }
-                                else if (item.rating == 5)
-                                {
-                                    <div class="rating" id="rating-@{@item.UploadID}">
+
+                                    }
+                                    else if (item.rating == 5)
+                                    {
+
                                         <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5"><label for="@{@item.UploadID}str5"></label></span>
                                         <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4"><label for="@{@item.UploadID}str4"></label></span>
                                         <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3"><label for="@{@item.UploadID}str3"></label></span>
                                         <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str2" value="2"><label for="@{@item.UploadID}str2"></label></span>
                                         <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1"><label for="@{@item.UploadID}str1"></label></span>
-                                    </div>
-                                }
+
+                                    }
+                                </div>
                             }
                             else
                             {
-                                <div class="rating" id="rating-@{@item.UploadID}">
+                                <div class="@(User.Identity.IsAuthenticated ? "rating" : "static-rating")" id="@(User.Identity.IsAuthenticated ? "rating" : "static-rating")-@{@item.UploadID}">
                                     <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5"><label for="@{@item.UploadID}str5"></label></span>
                                     <span><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4"><label for="@{@item.UploadID}str4"></label></span>
                                     <span><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3"><label for="@{@item.UploadID}str3"></label></span>
@@ -120,6 +124,7 @@
                                     <span><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1"><label for="@{@item.UploadID}str1"></label></span>
                                 </div>
                             }
+                            <div class="rating-error" id="error-@{@item.UploadID}"><p class="rating-error-msg">Please log in to rate.</p></div>
                         </div>
                     }
                 }
