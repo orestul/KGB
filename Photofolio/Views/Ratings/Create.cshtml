@@ -1,23 +1,31 @@
 ﻿@model Login.Models.Rating
-
+@using Login.Models;
+@using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "Rate-form" }))
 {
-    @Html.AntiForgeryToken()
-
+    @*@Html.AntiForgeryToken()*@
+    <div class="rating">
+        <span><input type="radio" name="rating" id="str5" value="5"><label for="str5"></label></span>
+        <span><input type="radio" name="rating" id="str4" value="4"><label for="str4"></label></span>
+        <span><input type="radio" name="rating" id="str3" value="3"><label for="str3"></label></span>
+        <span><input type="radio" name="rating" id="str2" value="2"><label for="str2"></label></span>
+        <span><input type="radio" name="rating" id="str1" value="1"><label for="str1"></label></span>
+    </div>
     <div class="form-horizontal">
         <h4>Rating</h4>
         <hr />
+        
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.RatingValue, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.RatingValue, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.RatingValue, new { htmlAttributes = new { @class = "form-control", @id = "Rating-value" } })
                 @Html.ValidationMessageFor(model => model.RatingValue, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -25,14 +33,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", @id = "Username-value"} })
                 @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
             </div>
         </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.UploadID, "UploadID", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("UploadID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("UploadID", null, htmlAttributes: new { @class = "form-control", @id = "Upload-id" })
                         @Html.ValidationMessageFor(model => model.UploadID, "", new { @class = "text-danger" })
                     </div>
                 </div>

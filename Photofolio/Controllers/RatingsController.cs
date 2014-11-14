@@ -36,10 +36,57 @@ namespace Login.Controllers
             return View(rating);
         }
 
-        // GET: Ratings/Create
-        public ActionResult Create()
+        //// GET: Ratings/Create
+        //public ActionResult Create()
+        //{
+        //    ViewBag.UploadID = new SelectList(db.Uploads, "UploadID", "category");
+        //    return View();
+        //}
+
+        public ActionResult Create(int UploadID, int ratingValue)
         {
-            ViewBag.UploadID = new SelectList(db.Uploads, "UploadID", "category");
+            Rating rating = new Rating();
+            rating.UploadID = UploadID;
+            rating.RatingValue = ratingValue;
+            rating.Username = User.Identity.GetUserName();
+            string user = User.Identity.GetUserName();
+            var querytwo = (from r in db.Ratings
+                            where r.Username == user
+                            && r.UploadID == rating.UploadID
+                            select r);
+
+            if (querytwo.ToList().Count == 0)
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Ratings.Add(rating);
+                    db.SaveChanges();
+                    float count = 0;
+                    float resultCount = 0;
+                    float avg = 0;
+                    var query = (from r in db.Ratings
+                                 where r.UploadID == rating.UploadID
+                                 select r);
+                    foreach (Rating item in query.ToList())
+                    {
+                        count += item.RatingValue;
+                        resultCount++;
+                    }
+                    avg = count / resultCount;
+                    Upload upload = (from u in db.Uploads
+                                     where u.UploadID == rating.UploadID
+                                     select u).FirstOrDefault();
+
+                    upload.rating = avg;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
             return View();
         }
 
@@ -47,10 +94,9 @@ namespace Login.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RatingID,RatingValue,UploadID")] Rating rating)
+        public ActionResult Create([Bind(Include = "RatingID, Username, RatingValue,UploadID")] Rating rating)
         {
-            rating.Username = User.Identity.GetUserName();
+            
             string user = User.Identity.GetUserName();
             var querytwo = (from r in db.Ratings
                             where r.Username == user

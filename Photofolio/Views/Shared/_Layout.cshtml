@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -17,12 +17,11 @@
             Upload photos
         </a> | <a href="" class="whiteLink">Find Photographers</a>
     </div>
-
-    @Html.ActionLink("Ratings", "Index", "Ratings")
+    @*@Html.ActionLink("Ratings", "Index", "Ratings")
     @Html.ActionLink("Uploads", "Index", "Uploads")
-    @Html.ActionLink("AspNetUsers", "Index", "AspNetUsers")
+    @Html.ActionLink("AspNetUsers", "Index", "AspNetUsers")*@
     <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
+        <div class="navbar-container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -130,12 +129,6 @@
                 $(this).hide();
                 $(this).next().show();
         });
-
-        $('input:radio').change(
-        function () {
-            var userRating = this.value;
-            alert(userRating);
-        });
     });
     </script>
 
@@ -164,18 +157,11 @@
                     $(this).nextAll().children('label').css("background", "url('../../Images/starFull.png')");
                     $(this).nextAll().children('label').css("background-size", "30px 30px");
                 });
-
-
-
-            });
-
-            $('input:radio').change(
-            function () {
-                var userRating = this.value;
-                alert(userRating);
             });
         });
     </script>
+
+
 
     <script>
         function ChangeUsername() {
@@ -309,6 +295,14 @@
                         return false;
                     }
                 }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(window).bind('scroll', function () {
+                var navHeight = 300; // custom nav height
+                ($(window).scrollTop() > navHeight) ? $('nav').addClass('goToTop') : $('nav').removeClass('goToTop');
             });
         });
     </script>

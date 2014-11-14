@@ -7,15 +7,18 @@ using System.Web.Mvc;
 using System.Data;
 using System.Data.Entity;
 using Login.Models;
-
+using Microsoft.AspNet.Identity;
 namespace Login.Controllers
 {
     public class HomeController : Controller
     {
         private Entities db = new Entities();
         public ActionResult Index()
-        {
-            return View();
+        {   string user = User.Identity.GetUserName();
+            var querytwo = (from u in db.Uploads
+                            where u.rating >= 3
+                            select u);
+            return View(querytwo.ToList());
         }
 
         public ActionResult Gallery()

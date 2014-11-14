@@ -24,9 +24,10 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.RatingValue)
+                    @Html.DisplayFor(modelItem => item.Username)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Upload.category)
+                    @Html.DisplayFor(modelItem => item.Upload.UploadID)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

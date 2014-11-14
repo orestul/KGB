@@ -69,11 +69,13 @@
 .rating-error
 {
     display: none;
+    width: 300px;
+    height: 50px;
+    text-align: right;
 }
 
 .rating-error-msg
 {
-    padding-left: 40px;
     color: red;
     font-size: 15px;
     
@@ -355,7 +357,6 @@ footer p {
         opacity: 0.7;
 		
     }
-
     .nav>li>a {
         padding: 35px;
     }
@@ -370,6 +371,7 @@ footer p {
         margin: 0 auto;
         table-layout: fixed;
         font-size: 1.25em;
+
     }
 }
 
@@ -629,4 +631,23 @@ footer p {
 #My-account-panel
 {
     display: none;
+}
+
+#Account-div
+{
+    float: right;
+}
+
+.navbar-container
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.goToTop {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  opacity: 1;
 }
