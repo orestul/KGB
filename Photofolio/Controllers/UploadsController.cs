@@ -47,7 +47,7 @@ namespace Login.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "category")] Upload upload, HttpPostedFileBase file, string category)
+        public ActionResult Create([Bind(Include = "category, title, description")] Upload upload, HttpPostedFileBase file, string category)
         {
             var path = "";
             //[Bind(Include = "UploadID,category,location,username")]
@@ -66,6 +66,7 @@ namespace Login.Controllers
                 }
                 file.SaveAs(path);
                 upload.username = User.Identity.GetUserName();
+                //+ DateTime.Now.TimeOfDay.ToString("HH-mm-ss")
                 upload.location = "Images/Uploads/" + User.Identity.GetUserName() + "/" + category + "/" + fileName;
                 upload.category = category;
             }

@@ -12,13 +12,41 @@ namespace Login.Controllers
 {
     public class HomeController : Controller
     {
+        Repository rep = new Repository();
         private Entities db = new Entities();
         public ActionResult Index()
         {   string user = User.Identity.GetUserName();
             var querytwo = (from u in db.Uploads
                             where u.rating >= 3
                             select u);
+            ViewData["TopMembers"] = rep.getTopMembers();
             return View(querytwo.ToList());
+        }
+
+        public ActionResult UserUploadsView(string user)
+        {
+            var query = (from r in db.Uploads
+                         where r.username == user
+                         select r);
+            return View(query.ToList());
+        }
+
+        public ActionResult SearchUser(string username)
+        {
+
+            var query = (from u in db.AspNetUsers
+                         where u.UserName.Contains(username)
+                         select u);
+            return View(query.ToList());
+        }
+
+        public ActionResult SearchPhoto(string description)
+        {
+
+            var query = (from u in db.Uploads
+                         where u.title.Contains(description) || u.description.Contains(description)
+                         select u);
+            return View(query.ToList());
         }
 
         public ActionResult Gallery()
@@ -81,5 +109,7 @@ namespace Login.Controllers
 
             return RedirectToAction("Index");
         }
+
+
     }
 }

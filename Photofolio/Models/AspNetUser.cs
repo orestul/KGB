@@ -33,6 +33,11 @@ namespace Login.Models
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
+        public string TagOne { get; set; }
+        public string TagTwo { get; set; }
+        public string TagThree { get; set; }
+        public Nullable<double> AvgRating { get; set; }
+        public string Country { get; set; }
     
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }

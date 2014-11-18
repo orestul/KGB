@@ -67,6 +67,29 @@ namespace Login.Controllers
                     var query = (from r in db.Ratings
                                  where r.UploadID == rating.UploadID
                                  select r);
+                    var querythree = (from r in db.Uploads
+                                      where r.UploadID == rating.UploadID
+                                      select r).FirstOrDefault();
+                    var username = querythree.username;
+                    var queryfour = (from r in db.Ratings
+                                     where r.Username == username
+                                     select r);
+                    float uRatingCount = 0;
+                    float uTotalRating = 0;
+                    float uAvgRating = 0;
+                    foreach(Rating item in queryfour.ToList())
+                    {
+                        uTotalRating += item.RatingValue;
+                        uRatingCount++;
+                    }
+
+                    uAvgRating = uTotalRating / uRatingCount;
+
+                    AspNetUser anu = (from u in db.AspNetUsers
+                                      where u.UserName == username
+                                      select u).FirstOrDefault();
+                    anu.AvgRating = uAvgRating;
+                    db.SaveChanges();
                     foreach (Rating item in query.ToList())
                     {
                         count += item.RatingValue;

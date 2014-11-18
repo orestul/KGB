@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Login.Models.Upload>
+
+@{
+    ViewBag.Title = "SearchPhoto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SearchPhoto</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rating)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.category)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rating)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UploadID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UploadID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UploadID })
+        </td>
+    </tr>
+}
+
+</table>

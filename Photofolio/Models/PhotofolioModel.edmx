@@ -65,6 +65,11 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="TagOne" Type="varchar" MaxLength="25" />
+          <Property Name="TagTwo" Type="varchar" MaxLength="25" />
+          <Property Name="TagThree" Type="varchar" MaxLength="25" />
+          <Property Name="AvgRating" Type="float" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Ratings">
           <Key>
@@ -86,6 +91,8 @@
           <Property Name="location" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="username" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="rating" Type="float" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="varchar(max)" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -247,6 +254,11 @@
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <Property Name="TagOne" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="TagTwo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="TagThree" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="AvgRating" Type="Double" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Rating">
           <Key>
@@ -270,6 +282,8 @@
           <Property Name="username" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Ratings" Relationship="Self.FK_Ratings_Uploads" FromRole="Uploads" ToRole="Ratings" />
           <Property Name="rating" Type="Double" Nullable="false" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -386,6 +400,11 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="Model.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="AvgRating" ColumnName="AvgRating" />
+                <ScalarProperty Name="TagThree" ColumnName="TagThree" />
+                <ScalarProperty Name="TagTwo" ColumnName="TagTwo" />
+                <ScalarProperty Name="TagOne" ColumnName="TagOne" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
@@ -414,6 +433,8 @@
           <EntitySetMapping Name="Uploads">
             <EntityTypeMapping TypeName="Model.Upload">
               <MappingFragment StoreEntitySet="Uploads">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="rating" ColumnName="rating" />
                 <ScalarProperty Name="UploadID" ColumnName="UploadID" />
                 <ScalarProperty Name="category" ColumnName="category" />

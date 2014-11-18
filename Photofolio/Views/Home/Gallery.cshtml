@@ -52,11 +52,11 @@
                                 @item.username
                             </h3>
                             @*@for (int count = 1; count < @item.rating + 1; count++)
-                                {
-                                    <div class="rating">
-                                        <span><input type="radio" name="rating" id="@count" value="@count"><label for="@count"></label></span>
-                                    </div>
-                                }*@
+                        {
+                            <div class="rating">
+                                <span><input type="radio" name="rating" id="@count" value="@count"><label for="@count"></label></span>
+                            </div>
+                        }*@
                             @if (item.rating > 0)
                             {
                                 <div class="@(User.Identity.IsAuthenticated ? "rating" : "static-rating")" id="@(User.Identity.IsAuthenticated ? "rating" : "static-rating")-@{@item.UploadID}">

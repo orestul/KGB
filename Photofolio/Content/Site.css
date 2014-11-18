@@ -43,6 +43,38 @@
 	display: inline;
 }
 
+.star-div
+{
+    float: left;
+}
+
+.static-rating-front span { width: 15px; height: 15px;float:right; position:relative; }
+.static-rating-front span input {
+    position:absolute;
+    top:0px;
+    left:0px;
+    opacity:0;
+    width: 15px;
+    height: 15px;
+}
+.static-rating-front span label {
+    width:15px;
+    height:15px;
+    text-align:center;
+    color:#FFF;
+    background: url('../../Images/starEmpty.png') no-repeat;
+	background-size: 15px 15px;
+    font-size:15px;
+    margin-right:2px;
+    line-height:15px;
+}
+.static-rating-front span.checked label,
+.static-rating-front span.checked ~ span label {
+    background: url('../../Images/starFull.png') no-repeat;
+	background-size: 15px 15px;
+    color:#FFF;
+}
+
 .static-rating span { width: 30px; height: 30px;float:right; position:relative; }
 .static-rating span input {
     position:absolute;
@@ -650,4 +682,9 @@ footer p {
   width: 100%;
   z-index: 1;
   opacity: 1;
+}
+
+.margin-removed
+{
+    margin: 0;
 }

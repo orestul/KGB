@@ -24,6 +24,8 @@ namespace Login.Models
         public string location { get; set; }
         public string username { get; set; }
         public double rating { get; set; }
+        public string title { get; set; }
+        public string description { get; set; }
     
         public virtual ICollection<Rating> Ratings { get; set; }
     }
