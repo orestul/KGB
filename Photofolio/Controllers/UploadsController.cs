@@ -54,7 +54,7 @@ namespace Login.Controllers
             if (file != null && file.ContentLength > 0)
             {
                 var fileName = Path.GetFileName(file.FileName);
-                path = Server.MapPath("~/Images/Uploads/" + User.Identity.GetUserName() + "/Photos");
+                path = Server.MapPath("~/Images/Uploads/" + User.Identity.GetUserName() + "/" + category);
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);

@@ -68,22 +68,28 @@
                     <br><br>
                     <!--Username Input Box -->
                     <div class="row">
+                        @using (Html.BeginForm("SearchUser", "Home", FormMethod.Post)) {
                         <div class="col-xs-12" id="userSearch">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Username" />
+                                <input type="text" class="form-control" name="username" placeholder="Username" />
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-user"></i>
                                 </span>
                             </div>
+                            <input type="submit" class="btn btn-default floatRight" name="submit" value="Submit">
                         </div>
+                        }
+                        @using (Html.BeginForm("SearchPhoto", "Home", FormMethod.Post)) {
                         <div class="col-xs-12" id="photoSearch">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Photo Description" />
+                                <input type="text" class="form-control" name="description" placeholder="Photo Description" />
                                 <span class="input-group-addon">
                                     <i class="glyphicon glyphicon-picture"></i>
                                 </span>
                             </div>
+                            <input type="submit" class="btn btn-default floatRight" name="submit" value="Submit">
                         </div>
+                        }
                         <div class="col-xs-12" id="tagSearch">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Tag" />
@@ -93,7 +99,6 @@
                             </div>
                         </div>
                         <br><br>
-                        <button type="button" class="btn btn-default floatRight">Search</button>
                     </div>
 
                     <br>

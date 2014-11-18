@@ -37,6 +37,24 @@ namespace Login.Controllers
             return View();
         }
 
+        public ActionResult SearchUser(string username)
+        {
+            
+            var query = (from u in db.AspNetUsers
+                         where u.UserName.StartsWith(username)
+                         select u);
+            return View(query.ToList());
+        }
+
+        public ActionResult SearchPhoto(string description)
+        {
+
+            var query = (from u in db.Uploads
+                         where u.username.Contains(description)
+                         select u);
+            return View(query.ToList());
+        }
+
 
         [HttpPost]
         public ActionResult UploadPhoto(HttpPostedFileBase file)
