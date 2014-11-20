@@ -45,6 +45,10 @@ namespace Login.Controllers
 
         public ActionResult Create(int UploadID, int ratingValue)
         {
+            if(!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("../Account/Login");
+            }
             Rating rating = new Rating();
             rating.UploadID = UploadID;
             rating.RatingValue = ratingValue;
@@ -102,13 +106,13 @@ namespace Login.Controllers
 
                     upload.rating = avg;
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("../Home/Gallery");
                 }
 
             }
             else
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("../Home/Gallery");
             }
             return View();
         }

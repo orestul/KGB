@@ -5,20 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="box">
-    <h2>SearchUser</h2>
+    <h2>Search Results for: @ViewData["UserSearchKeyword"]</h2>
     <table class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TagOne)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TagTwo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TagThree)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.AvgRating)
@@ -34,14 +25,9 @@
             <tr>
                 <td>
                     <a href="@Url.Action("UserUploadsView", "Home", new { user = @item.UserName })">@Html.DisplayFor(modelItem => item.UserName)</a>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TagOne)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TagTwo)
-                </td>
-                <td>
+                    <br />
+                    @Html.DisplayFor(modelItem => item.TagOne) | 
+                    @Html.DisplayFor(modelItem => item.TagTwo) | 
                     @Html.DisplayFor(modelItem => item.TagThree)
                 </td>
                 <td>

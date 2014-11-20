@@ -19,6 +19,10 @@ namespace Login.Controllers
             var querytwo = (from u in db.Uploads
                             where u.rating >= 3
                             select u);
+            var query = (from u in db.Ratings
+                         where u.Username == user
+                         select u);
+            ViewData["PhotosRated"] = query.ToList();
             ViewData["TopMembers"] = rep.getTopMembers();
             return View(querytwo.ToList());
         }
@@ -28,6 +32,7 @@ namespace Login.Controllers
             var query = (from r in db.Uploads
                          where r.username == user
                          select r);
+            ViewData["User"] = user;
             return View(query.ToList());
         }
 
@@ -37,6 +42,7 @@ namespace Login.Controllers
             var query = (from u in db.AspNetUsers
                          where u.UserName.Contains(username)
                          select u);
+            ViewData["UserSearchKeyword"] = username;
             return View(query.ToList());
         }
 
@@ -51,6 +57,11 @@ namespace Login.Controllers
 
         public ActionResult Gallery()
         {
+            string user = User.Identity.GetUserName();
+            var query = (from u in db.Ratings
+                         where u.Username == user
+                        select u);
+            ViewData["PhotosRated"] = query.ToList();
             return View(db.Uploads.ToList());
         }
 

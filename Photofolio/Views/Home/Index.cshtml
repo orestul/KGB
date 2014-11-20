@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Login.Models.Upload>
-
+@using Login.Models;
 @{
     ViewBag.Title = "Home Page";
 }
@@ -20,6 +20,12 @@
                         <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                     </ol>
                     <!-- Wrapper for slides -->
+                    @{List<int> photosRated = new List<int>();
+                    foreach (var photoID in ViewData["PhotosRated"] as List<Rating>)
+                    {
+                        photosRated.Add(photoID.UploadID);
+                    }
+                    }
                     <div class="carousel-inner">
                         @foreach (var item in Model)
                         {
@@ -32,7 +38,7 @@
 
                                         @if (item.rating > 0)
                                         {
-                                            <div class="@(User.Identity.IsAuthenticated ? "rating" : "static-rating")" id="@(User.Identity.IsAuthenticated ? "rating" : "static-rating")-@{@item.UploadID}">
+                                            <div class="@(photosRated.Contains(item.UploadID) ? "static-rating" : "rating")" id="@(photosRated.Contains(item.UploadID) ? "static-rating" : "rating")-@item.UploadID">
 
                                                 <h2 class="inline">Caption 1</h2>
                                                 @if (item.rating == 1)
@@ -91,7 +97,7 @@
                                         }
                                         else
                                         {
-                                            <div class="@(User.Identity.IsAuthenticated ? "rating" : "static-rating")" id="@(User.Identity.IsAuthenticated ? "rating" : "static-rating")-@{@item.UploadID}">
+                                            <div class="@(photosRated.Contains(item.UploadID) ? "static-rating" : "rating")" id="@(photosRated.Contains(item.UploadID) ? "static-rating" : "rating")-@item.UploadID">
                                                 <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "5" })'"><label for="@{@item.UploadID}str5"></label></span>
                                                 <span><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "4" })'"><label for="@{@item.UploadID}str4"></label></span>
                                                 <span><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "3" })'"><label for="@{@item.UploadID}str3"></label></span>
@@ -100,10 +106,10 @@
                                             </div>
                                             @*<br />
                                            
-                                            <br />*@
+                                            <br />
                                              <div class="rating-error" id="error-@{@item.UploadID}"><p class="rating-error-msg">Please log in to rate.</p></div>
                                             <p class="caption inline">Photo by: <a href="">Dummy</a></p>
-                                            <p class="avgRating caption inline">400 Ratings</p>
+                                            <p class="avgRating caption inline">400 Ratings</p>*@
                                         }
 
                                     </div>
@@ -155,45 +161,47 @@
                                     <img src="http://placehold.it/75x75" class="img-responsive">
                                 </div>
                                 <div class="col-sm-9">
-                                    <h4 class="margin-removed">@item.UserName</h4>
-                                    <div class="star-div">
-                                        @if (Math.Round((float)item.AvgRating) == 3)
-                                        {
-                                            <div class="static-rating-front">
-                                                <span><input type="radio" id="str1"><label for="str1"></label></span>
-                                                <span><input type="radio" id="str2"><label for="str2"></label></span>
-                                                <span class="checked"><input type="radio" id="str3"><label for="str3"></label></span>
-                                                <span class="checked"><input type="radio" id="str4"><label for="str4"></label></span>
-                                                <span class="checked"><input type="radio" id="str5"><label for="str5"></label></span>
-                                            </div>
-                                        }
-                                        else if (Math.Round((float)item.AvgRating) == 4)
-                                        {
-                                            <div class="static-rating-front">
-                                                <span><input type="radio" id="str1"><label for="str1"></label></span>
-                                                <span class="checked"><input type="radio" id="str2"><label for="str2"></label></span>
-                                                <span class="checked"><input type="radio" id="str3"><label for="str3"></label></span>
-                                                <span class="checked"><input type="radio" id="str4"><label for="str4"></label></span>
-                                                <span class="checked"><input type="radio" id="str5"><label for="str5"></label></span>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="static-rating-front">
-                                                <span class="checked"><input type="radio" id="str1"><label for="str1"></label></span>
-                                                <span class="checked"><input type="radio" id="str2"><label for="str2"></label></span>
-                                                <span class="checked"><input type="radio" id="str3"><label for="str3"></label></span>
-                                                <span class="checked"><input type="radio" id="str4"><label for="str4"></label></span>
-                                                <span class="checked"><input type="radio" id="str5"><label for="str5"></label></span>
-                                            </div>
-                                        }
-                                    </div>
-                                    <br>
-                                    @item.Country
-                                    <br>
-                                    @item.TagOne | @item.TagTwo | @item.TagThree
-                                    <br>
-                                </div>
+                                    <a href="@Url.Action("UserUploadsView", "Home", new { user = @item.UserName })">
+                                        <h4 class="margin-removed top-member-h4">@item.UserName</h4>
+                                    </a>
+                                        <div class="star-div">
+                                            @if (Math.Round((float)item.AvgRating) == 3)
+                                            {
+                                                <div class="static-rating-front">
+                                                    <span><input type="radio" id="str1"><label for="str1"></label></span>
+                                                    <span><input type="radio" id="str2"><label for="str2"></label></span>
+                                                    <span class="checked"><input type="radio" id="str3"><label for="str3"></label></span>
+                                                    <span class="checked"><input type="radio" id="str4"><label for="str4"></label></span>
+                                                    <span class="checked"><input type="radio" id="str5"><label for="str5"></label></span>
+                                                </div>
+                                            }
+                                            else if (Math.Round((float)item.AvgRating) == 4)
+                                            {
+                                                <div class="static-rating-front">
+                                                    <span><input type="radio" id="str1"><label for="str1"></label></span>
+                                                    <span class="checked"><input type="radio" id="str2"><label for="str2"></label></span>
+                                                    <span class="checked"><input type="radio" id="str3"><label for="str3"></label></span>
+                                                    <span class="checked"><input type="radio" id="str4"><label for="str4"></label></span>
+                                                    <span class="checked"><input type="radio" id="str5"><label for="str5"></label></span>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="static-rating-front">
+                                                    <span class="checked"><input type="radio" id="str1"><label for="str1"></label></span>
+                                                    <span class="checked"><input type="radio" id="str2"><label for="str2"></label></span>
+                                                    <span class="checked"><input type="radio" id="str3"><label for="str3"></label></span>
+                                                    <span class="checked"><input type="radio" id="str4"><label for="str4"></label></span>
+                                                    <span class="checked"><input type="radio" id="str5"><label for="str5"></label></span>
+                                                </div>
+                                            }
+                                        </div>
+                                        <br>
+                                        @item.Country
+                                        <br>
+                                        @item.TagOne | @item.TagTwo | @item.TagThree
+                                        <br>
+</div>
                             </div>
                         </div>
                     </div>

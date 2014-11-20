@@ -4,49 +4,121 @@
     ViewBag.Title = "SearchPhoto";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="box">
+    <h2>SearchPhoto</h2>
+    <table class="table">
+        @*<tr>
+            <th>
+                @Html.DisplayNameFor(model => model.category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rating)
+            </th>
+        </tr>*@
 
-<h2>SearchPhoto</h2>
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-4 text-center margin-bottom-1">
+                <img src="~/@item.location" alt="" width="100%" height="200">
+                <h3 class="float-left margin-removed">
+                    @item.username
+                </h3>
+                @*@for (int count = 1; count < @item.rating + 1; count++)
+                    {
+                        <div class="rating">
+                            <span><input type="radio" name="rating" id="@count" value="@count"><label for="@count"></label></span>
+                        </div>
+                    }*@
+                @if (item.rating > 0)
+                {
+                    <div class="@(User.Identity.IsAuthenticated ? "rating" : "static-rating")" id="@(User.Identity.IsAuthenticated ? "rating" : "static-rating")-@{@item.UploadID}">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.category)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.rating)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.category)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.location)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.rating)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UploadID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UploadID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UploadID })
-        </td>
-    </tr>
-}
+                        @if (item.rating == 1)
+                        {
 
-</table>
+                            <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "5" })'"><label for="@{@item.UploadID}str5"></label></span>
+                            <span><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "4" })'"><label for="@{@item.UploadID}str4"></label></span>
+                            <span><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "3" })'"><label for="@{@item.UploadID}str3"></label></span>
+                            <span><input type="radio" name="rating" id="@{@item.UploadID}str2" value="2" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "2" })'"><label for="@{@item.UploadID}str2"></label></span>
+                            <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "1" })'"><label for="@{@item.UploadID}str1"></label></span>
+
+                        }
+                        else if (item.rating == 2)
+                        {
+
+                            <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "5" })'"><label for="@{@item.UploadID}str5"></label></span>
+                            <span><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "4" })'"><label for="@{@item.UploadID}str4"></label></span>
+                            <span><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "3" })'"><label for="@{@item.UploadID}str3"></label></span>
+                            <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str2" value="2" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "2" })'"><label for="@{@item.UploadID}str2"></label></span>
+                            <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "1" })'"><label for="@{@item.UploadID}str1"></label></span>
+
+                        }
+                        else if (item.rating == 3)
+                        {
+
+                            <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "5" })'"><label for="@{@item.UploadID}str5"></label></span>
+                            <span><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "4" })'"><label for="@{@item.UploadID}str4"></label></span>
+                            <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "3" })'"><label for="@{@item.UploadID}str3"></label></span>
+                            <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str2" value="2" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "2" })'"><label for="@{@item.UploadID}str2"></label></span>
+                            <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "1" })'"><label for="@{@item.UploadID}str1"></label></span>
+
+                        }
+                        else if (item.rating == 4)
+                        {
+
+                            <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "5" })'"><label for="@{@item.UploadID}str5"></label></span>
+                            <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "4" })'"><label for="@{@item.UploadID}str4"></label></span>
+                            <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "3" })'"><label for="@{@item.UploadID}str3"></label></span>
+                            <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str2" value="2" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "2" })'"><label for="@{@item.UploadID}str2"></label></span>
+                            <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "1" })'"><label for="@{@item.UploadID}str1"></label></span>
+
+                        }
+                        else if (item.rating == 5)
+                        {
+
+                            <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "5" })'"><label for="@{@item.UploadID}str5"></label></span>
+                            <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "4" })'"><label for="@{@item.UploadID}str4"></label></span>
+                            <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "3" })'"><label for="@{@item.UploadID}str3"></label></span>
+                            <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str2" value="2" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "2" })'"><label for="@{@item.UploadID}str2"></label></span>
+                            <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "1" })'"><label for="@{@item.UploadID}str1"></label></span>
+
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="@(User.Identity.IsAuthenticated ? "rating" : "static-rating")" id="@(User.Identity.IsAuthenticated ? "rating" : "static-rating")-@{@item.UploadID}">
+                        <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "5" })'"><label for="@{@item.UploadID}str5"></label></span>
+                        <span><input type="radio" name="rating" id="@{@item.UploadID}str4" value="4" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "4" })'"><label for="@{@item.UploadID}str4"></label></span>
+                        <span><input type="radio" name="rating" id="@{@item.UploadID}str3" value="3" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "3" })'"><label for="@{@item.UploadID}str3"></label></span>
+                        <span><input type="radio" name="rating" id="@{@item.UploadID}str2" value="2" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "2" })'"><label for="@{@item.UploadID}str2"></label></span>
+                        <span><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "1" })'"><label for="@{@item.UploadID}str1"></label></span>
+                    </div>
+                }
+                <div class="rating-error" id="error-@{@item.UploadID}"><p class="rating-error-msg">Please log in to rate.</p></div>
+            </div>
+            @*<tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.rating)
+                </td>
+            </tr>*@
+        }
+
+    </table>
+</div>

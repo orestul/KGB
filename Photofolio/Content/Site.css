@@ -48,6 +48,37 @@
     float: left;
 }
 
+
+.rating-carousel span { width: 15px; height: 15px;float:right; position:relative; }
+.rating-carousel span input {
+    position:absolute;
+    top:0px;
+    left:0px;
+    opacity:0;
+    width: 15px;
+    height: 15px;
+}
+.rating-carousel span label {
+    width:15px;
+    height:15px;
+    text-align:center;
+    color:#FFF;
+    background: url('../../Images/starEmpty.png') no-repeat;
+	background-size: 15px 15px;
+    font-size:15px;
+    margin-right:2px;
+    line-height:15px;
+}
+
+.rating-carousel span:hover ~ span label,
+.rating-carousel span:hover label,
+.rating-carousel span.checked label,
+.rating-carousel span.checked ~ span label {
+    background: url('../../Images/starFull.png') no-repeat;
+	background-size: 15px 15px;
+    color:#FFF;
+}
+
 .static-rating-front span { width: 15px; height: 15px;float:right; position:relative; }
 .static-rating-front span input {
     position:absolute;
@@ -75,27 +106,27 @@
     color:#FFF;
 }
 
-.static-rating span { width: 30px; height: 30px;float:right; position:relative; }
+.static-rating span { width: 20px; height: 20px;float:right; position:relative; }
 .static-rating span input {
     position:absolute;
     top:0px;
     left:0px;
     opacity:0;
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
     border:1px solid black;
 }
 .static-rating span label {
     display:inline-block;
-    width:30px;
-    height:30px;
+    width:20px;
+    height:20px;
     text-align:center;
     color:#FFF;
     background: url('../../Images/starEmpty.png') no-repeat;
-	background-size: 30px 30px;
-    font-size:30px;
+	background-size: 20px 20px;
+    font-size:20px;
     margin-right:2px;
-    line-height:30px;
+    line-height:20px;
 }
 
 .rating-error
@@ -115,32 +146,32 @@
 
 .static-rating span.checked label,
 .static-rating span.checked ~ span label {
-    background: url('../../Images/starFull.png') no-repeat;
-	background-size: 30px 30px;
+    background: url('../../Images/userRatedStar.png') no-repeat;
+	background-size: 20px 20px;
     color:#FFF;
 }
 
-.rating span { width: 30px; height: 30px;float:right; position:relative; }
+.rating span { width: 20px; height: 20px;float:right; position:relative; }
 .rating span input {
     position:absolute;
     top:0px;
     left:0px;
     opacity:0;
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
     border:1px solid black;
 }
 .rating span label {
     display:inline-block;
-    width:30px;
-    height:30px;
+    width:20px;
+    height:20px;
     text-align:center;
     color:#FFF;
     background: url('../../Images/starEmpty.png') no-repeat;
-	background-size: 30px 30px;
-    font-size:30px;
+	background-size: 20px 20px;
+    font-size:20px;
     margin-right:2px;
-    line-height:30px;
+    line-height:20px;
 }
 
 .rating span:hover ~ span label,
@@ -148,13 +179,13 @@
 .rating span.checked label,
 .rating span.checked ~ span label {
     background: url('../../Images/starFull.png') no-repeat;
-	background-size: 30px 30px;
+	background-size: 20px 20px;
     color:#FFF;
 }
 .rating span.test label,
 .rating span.test ~ span label {
     background: url('../../Images/starEmpty.png') no-repeat;
-	background-size: 30px 30px;
+	background-size: 20px 20px;
     color:#FFF;
 }
 
@@ -687,4 +718,241 @@ footer p {
 .margin-removed
 {
     margin: 0;
+}
+
+.margin-bottom-1
+{
+    margin-bottom: 1em;
+}
+
+/* Preload images */
+body:after {
+  content: url(../Images/close.png) url(../Images/loading.gif) url(../Images/prev.png) url(../Images/next.png);
+  display: none;
+}
+
+.lightboxOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: black;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  display: none;
+}
+
+.lightbox {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 10000;
+  text-align: center;
+  line-height: 0;
+  font-weight: normal;
+}
+
+.lightbox .lb-image {
+  display: block;
+  height: auto;
+  max-width: inherit;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.lightbox a img {
+  border: none;
+}
+
+.lb-outerContainer {
+  position: relative;
+  background-color: white;
+  *zoom: 1;
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.lb-outerContainer:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.lb-container {
+  padding: 4px;
+}
+
+.lb-loader {
+  position: absolute;
+  top: 43%;
+  left: 0;
+  height: 25%;
+  width: 100%;
+  text-align: center;
+  line-height: 0;
+}
+
+.lb-cancel {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
+  background: url(../Images/loading.gif) no-repeat;
+}
+
+.lb-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
+
+.lb-container > .nav {
+  left: 0;
+}
+
+.lb-nav a {
+  outline: none;
+  background-image: url('data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
+}
+
+.lb-prev, .lb-next {
+  height: 100%;
+  cursor: pointer;
+  display: block;
+}
+
+.lb-nav a.lb-prev {
+  width: 34%;
+  left: 0;
+  float: left;
+  background: url(../Images/prev.png) left 48% no-repeat;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -webkit-transition: opacity 0.6s;
+  -moz-transition: opacity 0.6s;
+  -o-transition: opacity 0.6s;
+  transition: opacity 0.6s;
+}
+
+.lb-nav a.lb-prev:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+.lb-nav a.lb-next {
+  width: 64%;
+  right: 0;
+  float: right;
+  background: url(../Images/next.png) right 48% no-repeat;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -webkit-transition: opacity 0.6s;
+  -moz-transition: opacity 0.6s;
+  -o-transition: opacity 0.6s;
+  transition: opacity 0.6s;
+}
+
+.lb-nav a.lb-next:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+.lb-dataContainer {
+  margin: 0 auto;
+  padding-top: 5px;
+  *zoom: 1;
+  width: 100%;
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.lb-dataContainer:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.lb-data {
+  padding: 0 4px;
+  color: #ccc;
+}
+
+.lb-data .lb-details {
+  width: 85%;
+  float: left;
+  text-align: left;
+  line-height: 1.1em;
+}
+
+.lb-data .lb-caption {
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1em;
+}
+
+.lb-data .lb-number {
+  display: block;
+  clear: left;
+  padding-bottom: 1em;
+  font-size: 12px;
+  color: #999999;
+}
+
+.lb-data .lb-close {
+  display: block;
+  float: right;
+  width: 30px;
+  height: 30px;
+  background: url(../Images/close.png) top right no-repeat;
+  text-align: right;
+  outline: none;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+  opacity: 0.7;
+  -webkit-transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+
+.lb-data .lb-close:hover {
+  cursor: pointer;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+a
+{
+    color: black;
+}
+
+a:hover
+{
+    color: grey;
+    text-decoration: none;
+}
+
+.top-member-h4
+{
+    text-transform: none;
+}
+
+h3
+{
+    text-transform: none;
 }

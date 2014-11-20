@@ -54,7 +54,7 @@ namespace Login.Controllers
             if (file != null && file.ContentLength > 0)
             {
                 var fileName = Path.GetFileName(file.FileName);
-                path = Server.MapPath("~/Images/Uploads/" + User.Identity.GetUserName() + "/Photos");
+                path = Server.MapPath("~/Images/Uploads/" + User.Identity.GetUserName() + "/" + category);
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
@@ -103,7 +103,7 @@ namespace Login.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UploadID,category,location,username")] Upload upload)
+        public ActionResult Edit([Bind(Include = "UploadID,location, username, category,title, description")] Upload upload)
         {
             if (ModelState.IsValid)
             {

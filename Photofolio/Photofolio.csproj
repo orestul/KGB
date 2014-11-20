@@ -161,6 +161,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RatingsController.cs" />
@@ -223,10 +224,13 @@
     <Content Include="Images\bggg.jpg" />
     <Content Include="Images\bnw.jpg" />
     <Content Include="Images\camera.jpg" />
+    <Content Include="Images\close.png" />
     <Content Include="Images\fishing.jpg" />
     <Content Include="Images\fiveStar.png" />
     <Content Include="Images\intro-pic.jpg" />
+    <Content Include="Images\next.png" />
     <Content Include="Images\possiblewallpapers\bg.jpg" />
+    <Content Include="Images\prev.png" />
     <Content Include="Images\silh.jpg" />
     <Content Include="Images\slide-1.jpg" />
     <Content Include="Images\slide-2.jpg" />
@@ -322,6 +326,11 @@
     <Content Include="Views\Home\SearchUser.cshtml" />
     <Content Include="Views\Home\SearchPhoto.cshtml" />
     <Content Include="Views\Home\UserUploadsView.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Admin\Delete.cshtml" />
+    <Content Include="Views\Admin\Details.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
