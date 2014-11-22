@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+
+    @Html.AntiForgeryToken()
+    <li class="visible-xs">@Html.ActionLink(User.Identity.GetUserName(), "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage"})</li>
+    <li class="visible-xs">@Html.ActionLink("My Uploads", "Index", "Uploads", routeValues: null, htmlAttributes: new { title = "My Uploads" })</li>
+    <li class="visible-xs"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+
+}
+else
+{
+    <li class="visible-xs">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li class="visible-xs">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+}

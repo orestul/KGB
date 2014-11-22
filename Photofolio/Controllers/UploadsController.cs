@@ -11,6 +11,7 @@ using System.IO;
 using Microsoft.AspNet.Identity;
 namespace Login.Controllers
 {
+    [Authorize(Roles = "Admin, User, Banned")]
     public class UploadsController : Controller
     {
         private Entities db = new Entities();
@@ -83,8 +84,7 @@ namespace Login.Controllers
             return View(upload);
         }
 
-        // GET: Uploads/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
             if (id == null)
             {
@@ -113,6 +113,7 @@ namespace Login.Controllers
             }
             return View(upload);
         }
+
 
         // GET: Uploads/Delete/5
         public ActionResult Delete(int? id)

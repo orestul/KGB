@@ -321,7 +321,7 @@
     <Content Include="Views\AspNetUsers\Create.cshtml" />
     <Content Include="Views\AspNetUsers\Delete.cshtml" />
     <Content Include="Views\AspNetUsers\Details.cshtml" />
-    <Content Include="Views\AspNetUsers\Edit.cshtml" />
+    <Content Include="Views\Account\EditUser.cshtml" />
     <Content Include="Views\AspNetUsers\Index.cshtml" />
     <Content Include="Views\Home\SearchUser.cshtml" />
     <Content Include="Views\Home\SearchPhoto.cshtml" />
@@ -331,9 +331,13 @@
     <Content Include="Views\Admin\Details.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Shared\_LoginPartialSmall.cshtml" />
+    <Content Include="Views\Admin\DeleteUpload.cshtml" />
+    <Content Include="Views\Admin\EditUpload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ApplicationRole\" />
     <Folder Include="Views\HomeViewModels\" />
     <Folder Include="Views\Repository\" />
   </ItemGroup>

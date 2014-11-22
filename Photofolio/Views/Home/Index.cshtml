@@ -20,7 +20,13 @@
                         <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                     </ol>
                     <!-- Wrapper for slides -->
-                    @{List<int> photosRated = new List<int>();
+                    @{
+                        List<int> photosRated = new List<int>();
+                        List<int> numRatings = new List<int>();
+                        foreach(var item in ViewData["NumberRatings"] as List<int>)
+                        {
+                            numRatings.Add(item);
+                        }
                     foreach (var photoID in ViewData["PhotosRated"] as List<Rating>)
                     {
                         photosRated.Add(photoID.UploadID);
@@ -40,8 +46,8 @@
                                         {
                                             <div class="@(photosRated.Contains(item.UploadID) ? "static-rating" : "rating")" id="@(photosRated.Contains(item.UploadID) ? "static-rating" : "rating")-@item.UploadID">
 
-                                                <h2 class="inline">Caption 1</h2>
-                                                @if (item.rating == 1)
+                                                <h2 class="inline">@item.title</h2>
+                                                @if (Math.Round(item.rating) == 1)
                                                 {
 
                                                     <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "5" })'"><label for="@{@item.UploadID}str5"></label></span>
@@ -51,7 +57,7 @@
                                                     <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "1" })'"><label for="@{@item.UploadID}str1"></label></span>
 
                                                 }
-                                                else if (item.rating == 2)
+                                                else if (Math.Round(item.rating) == 2)
                                                 {
 
                                                     <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "5" })'"><label for="@{@item.UploadID}str5"></label></span>
@@ -61,7 +67,7 @@
                                                     <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "1" })'"><label for="@{@item.UploadID}str1"></label></span>
 
                                                 }
-                                                else if (item.rating == 3)
+                                                else if (Math.Round(item.rating) == 3)
                                                 {
 
                                                     <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "5" })'"><label for="@{@item.UploadID}str5"></label></span>
@@ -71,7 +77,7 @@
                                                     <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "1" })'"><label for="@{@item.UploadID}str1"></label></span>
 
                                                 }
-                                                else if (item.rating == 4)
+                                                else if (Math.Round(item.rating) == 4)
                                                 {
 
                                                     <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "5" })'"><label for="@{@item.UploadID}str5"></label></span>
@@ -81,7 +87,7 @@
                                                     <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "1" })'"><label for="@{@item.UploadID}str1"></label></span>
 
                                                 }
-                                                else if (item.rating == 5)
+                                                else if (Math.Round(item.rating) == 5)
                                                 {
 
                                                     <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "5" })'"><label for="@{@item.UploadID}str5"></label></span>
@@ -92,8 +98,7 @@
 
                                                 }
                                             </div>
-                                            <p class="caption inline">Photo by: <a href="">Dummy</a></p>
-                                            <p class="avgRating caption inline">400 Ratings</p>
+
                                         }
                                         else
                                         {
@@ -111,7 +116,8 @@
                                             <p class="caption inline">Photo by: <a href="">Dummy</a></p>
                                             <p class="avgRating caption inline">400 Ratings</p>*@
                                         }
-
+                                        <p class="caption inline">Photo by: <a href="@Url.Action("UserUploadsView", "Home", new { user = @item.username })" class="whiteFont">@item.username</a></p>
+                                        <p class="avgRating caption inline">@numRatings[count] Ratings</p>
                                     </div>
 
                                 </div>

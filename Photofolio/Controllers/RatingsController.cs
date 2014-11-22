@@ -10,6 +10,7 @@ using Login.Models;
 using Microsoft.AspNet.Identity;
 namespace Login.Controllers
 {
+    [Authorize(Roles = "Admin, User")]
     public class RatingsController : Controller
     {
         private Entities db = new Entities();

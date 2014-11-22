@@ -11,12 +11,15 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Owin;
 using Login.Models;
+using System.Net;
+using System.Data.Entity;
 
 namespace Login.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        Entities db = new Entities();
         private ApplicationUserManager _userManager;
 
         public AccountController()
@@ -65,7 +68,7 @@ namespace Login.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid username or password." + model.UserName + model.Password);
+                    ModelState.AddModelError("", "Invalid username or password.");
                 }
             }
 
@@ -88,10 +91,20 @@ namespace Login.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            var context = new ApplicationDbContext();
             if (ModelState.IsValid)
             {
+                IdentityUserRole id = new IdentityUserRole();
+                id.RoleId = "2";
                 var user = new ApplicationUser() { UserName = model.Username, Email = model.Email };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+                user.Roles.Add(id);
+                var roleStore = new RoleStore<IdentityRole>(context);
+                var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+                var userStore = new UserStore<ApplicationUser>(context);
+                var userManager = new UserManager<ApplicationUser>(userStore);
+                userManager.AddToRole(user.Id, "User");
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
@@ -251,6 +264,38 @@ namespace Login.Controllers
             }
             return RedirectToAction("Manage", new { Message = message });
         }
+
+        // GET: AspNetUsers/Edit/5
+        public ActionResult EditUser(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            AspNetUser aspNetUser = db.AspNetUsers.Find(id);
+            if (aspNetUser == null)
+            {
+                return HttpNotFound();
+            }
+            return View(aspNetUser);
+        }
+
+        // POST: AspNetUsers/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditUser([Bind(Include = "Id,Email,Country,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName, TagOne, TagTwo, TagThree")] AspNetUser aspNetUser)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(aspNetUser).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Manage");
+            }
+            return View(aspNetUser);
+        }
+
 
         //
         // GET: /Account/Manage

@@ -1,14 +1,27 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-
+    <div class="dropdown">
+        <a href="javascript:void(0)" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+            <span class="glyphicon glyphicon-user"></span>
+            @User.Identity.GetUserName()
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            @{if (User.IsInRole("Admin"))
+            {
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Index", "Admin")">Admin</a></li>
+            }
+            }
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Manage", "Account")">My Account</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Index", "Uploads")">My Uploads</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    </div>
     @Html.AntiForgeryToken()
-        <li>@Html.ActionLink(User.Identity.GetUserName(), "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    
+
 }
 else
 {
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+    @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
 }

@@ -11,6 +11,12 @@
 
 </head>
 <body>
+    <div class="visible-lg visible-md visible-sm">
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            <div id="Login-partial-div">@Html.Partial("_LoginPartial")</div>
+        }
+    </div>
     <div class="brand">PHOTO FOLIO</div>
     <div class="address-bar">
         <a href="@Url.Action("UploadArt", "Home")" class="whiteLink">Upload art</a> | <a href="@Url.Action("UploadPhoto", "Home")" class="whiteLink">
@@ -31,8 +37,6 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
-                {
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
                         <li>@Html.ActionLink("Gallery", "Gallery", "Home")</li>
@@ -42,9 +46,8 @@
                                 Search
                             </a>
                         </li>
-                        @Html.Partial("_LoginPartial")
+                            @Html.Partial("_LoginPartialSmall")
                     </ul>
-                }
             </div>
         </div>
     </nav>
@@ -53,9 +56,7 @@
     <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" id="searchModalContent">
-
                 <div class="modal-body">
-
                     <h3 class="whiteFont">What can we help you find?</h3>
                     <br>
                     <!--<p id = "searchP" class = "inline whiteFont">Search for:</p>
@@ -233,6 +234,12 @@
                 $("#photoSearch").hide(0);
                 $("#tagSearch").fadeIn(500);
             });
+        });
+    </script>
+
+    <script>
+        $("#dropdownMenu1").click(function () {
+            $('.dropdown-toggle').dropdown();
         });
     </script>
 
@@ -801,6 +808,17 @@
     }).call(this);
 
     </script>
-
+    <script>
+        $(document).ready(function () {
+            $("#User-list-div-button").click(function () {
+                $("#Upload-list-div").hide(0);
+                $("#User-list-div").show(0);
+            });
+            $("#Upload-list-div-button").click(function () {
+                $("#User-list-div").hide(0);
+                $("#Upload-list-div").show(0);
+            });
+        });
+    </script>
 </body>
 </html>

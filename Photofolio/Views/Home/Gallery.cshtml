@@ -51,9 +51,9 @@
                             <img src="~/@item.location" alt="" width="100%" height="200">
                         </a>
                         <a href="@Url.Action("UserUploadsView", "Home", new { user = @item.username })">
-                            <h3 class="float-left margin-removed">
+                            <h5 class="float-left margin-removed">
                                 @item.username
-                            </h3>
+                            </h5>
                         </a>
                         @*@for (int count = 1; count < @item.rating + 1; count++)
                             {
@@ -64,7 +64,7 @@
                         @if (item.rating > 0)
                         {
                             <div class="@(photosRated.Contains(item.UploadID) ? "static-rating" : "rating")" id="@(photosRated.Contains(item.UploadID) ? "static-rating" : "rating")-@item.UploadID">
-                                @if (item.rating == 1)
+                                @if (Math.Round(item.rating) == 1)
                                 {
 
                                     <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "5" })'"><label for="@{@item.UploadID}str5"></label></span>
@@ -74,7 +74,7 @@
                                     <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "1" })'"><label for="@{@item.UploadID}str1"></label></span>
 
                                 }
-                                else if (item.rating == 2)
+                                else if (Math.Round(item.rating) == 2)
                                 {
 
                                     <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "5" })'"><label for="@{@item.UploadID}str5"></label></span>
@@ -84,7 +84,7 @@
                                     <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "1" })'"><label for="@{@item.UploadID}str1"></label></span>
 
                                 }
-                                else if (item.rating == 3)
+                                else if (Math.Round(item.rating) == 3)
                                 {
 
                                     <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "5" })'"><label for="@{@item.UploadID}str5"></label></span>
@@ -94,7 +94,7 @@
                                     <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "1" })'"><label for="@{@item.UploadID}str1"></label></span>
 
                                 }
-                                else if (item.rating == 4)
+                                else if (Math.Round(item.rating) == 4)
                                 {
 
                                     <span><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "5" })'"><label for="@{@item.UploadID}str5"></label></span>
@@ -104,7 +104,7 @@
                                     <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str1" value="1" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "1" })'"><label for="@{@item.UploadID}str1"></label></span>
 
                                 }
-                                else if (item.rating == 5)
+                                else if (Math.Round(item.rating) == 5)
                                 {
 
                                     <span class="checked"><input type="radio" name="rating" id="@{@item.UploadID}str5" value="5" onclick="location.href = '@Url.Action("Create", "Ratings", new { UploadID = @item.UploadID, ratingValue = "5" })'"><label for="@{@item.UploadID}str5"></label></span>

@@ -15,13 +15,23 @@ namespace Login.Controllers
         Repository rep = new Repository();
         private Entities db = new Entities();
         public ActionResult Index()
-        {   string user = User.Identity.GetUserName();
+        {   
+            string user = User.Identity.GetUserName();
             var querytwo = (from u in db.Uploads
                             where u.rating >= 3
                             select u);
+            List<int> numberOfRatings = new List<int>();
+            foreach(var item in querytwo.ToList())
+            {
+                int ratingCount = (from r in db.Ratings
+                                   where r.UploadID == item.UploadID
+                                   select r).Count();
+                numberOfRatings.Add(ratingCount);
+            }
             var query = (from u in db.Ratings
                          where u.Username == user
                          select u);
+            ViewData["NumberRatings"] = numberOfRatings;
             ViewData["PhotosRated"] = query.ToList();
             ViewData["TopMembers"] = rep.getTopMembers();
             return View(querytwo.ToList());

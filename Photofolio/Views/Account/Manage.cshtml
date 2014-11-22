@@ -7,6 +7,7 @@
     <h2>@ViewBag.Title.</h2>
     @Html.ActionLink("My Uploads", "Index", "Uploads")
     <p class="text-success">@ViewBag.StatusMessage</p>
+    @Html.ActionLink("My Info", "EditUser", new { id = @User.Identity.GetUserId() })
     <div class="row">
         <div class="col-md-12">
             @if (ViewBag.HasLocalPassword)

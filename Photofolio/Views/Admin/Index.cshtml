@@ -5,68 +5,112 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="box">
-    <h2>Index</h2>
+    <h2>Admin</h2>
+    <a href="javascript:void(0)" id="User-list-div-button">Users</a>
+    <a href="javascript:void(0)" id="Upload-list-div-button">Uploads</a>
 
-    <p>
+    @*<p>
         @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TagOne)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TagTwo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TagThree)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AvgRating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Country)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+    </p>*@
+    <div id="User-list-div">
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TagOne)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TagTwo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TagThree)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AvgRating)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Country)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TagOne)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TagTwo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TagThree)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AvgRating)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Country)
+                </th>
+                <th></th>
             </tr>
-        }
 
-    </table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TagOne)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TagTwo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TagThree)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AvgRating)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div id="Upload-list-div">
+        <table class="table">
+            <tr>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Image
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Rating
+                </th>
+                <th>
+                    Username
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in ViewData["UploadList"] as List<Login.Models.Upload>)
+            {
+                <tr>
+                    <td>@item.category</td>
+                    <td><img src="~/@item.location" width="350" height="200"/></td>
+                    <td>@item.title</td>
+                    <td>@item.description</td>
+                    <td>@item.rating</td>
+                    <td>@item.username</td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditUpload", new { id = @item.UploadID }) |
+                        @Html.ActionLink("Delete", "DeleteUpload", new { id = @item.UploadID })
+                    </td>
+                </tr>
+            }
+            </table>
+</div>
 </div>

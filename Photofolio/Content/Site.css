@@ -191,7 +191,20 @@
 
 #Login-partial-div
 {
-    float: right;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 20;
+    background-color: black;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 10px;
+}
+
+#Login-partial-div a
+{
+    color: white;
 }
 
 .login-partial-display
@@ -955,4 +968,26 @@ a:hover
 h3
 {
     text-transform: none;
+}
+
+#Upload-list-div
+{
+    display: none;
+}
+
+.dropdown
+{
+    display: inline;
+}
+
+
+.dropdown-menu
+{
+    background-color: black;
+    left: -65px;
+}
+
+#registerLink
+{
+    padding-right: 25px;
 }
